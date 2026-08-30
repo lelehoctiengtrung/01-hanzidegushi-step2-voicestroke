@@ -140,7 +140,7 @@ async function generateGIF(character) {
         browser = await puppeteer.launch({
             headless: 'new',
             executablePath: executablePath || undefined,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
         });
 
         browser.on('disconnected', () => {
@@ -166,111 +166,83 @@ async function generateGIF(character) {
         });
 
         // 加载HTML页面
-        await page.goto(`${origin}/index.html?char=${encodeURIComponent(character)}&mode=${encodeURIComponent(CONFIG.mode)}&mock=1`, {
+        await page.goto(`${origin}/index.html?char=${encodeURIComponent(character)}&mode=${encodeURIComponent(CONFIG.mode)}`, {
             waitUntil: 'networkidle0',
             timeout: 30000
         });
 
         // 等待Hanzi Writer加载
-        await page.waitForFunction(() => window.writer !== undefined, { timeout: 10000 });
+        await page.waitForFunction(() => window.animationReady === true, { timeout: 15000 });
 
         const loadError = await page.evaluate(() => window.loadError || null);
         if (loadError) {
             throw new Error(loadError);
         }
 
-        const writerExists = await page.evaluate(() => typeof window.HanziWriter !== 'undefined');
-        if (!writerExists) {
-            throw new Error('HanziWriter 未加载成功');
+        const strokeCount = await page.evaluate(() => {
+            if (!window.writer || !window.writer._character) return 0;
+            return window.writer._character.strokes.length;
+        });
+
+        if (strokeCount === 0) {
+            throw new Error(`未能获取汉字 "${character}" 的笔画数据`);
         }
 
-        const svgExists = await page.evaluate(() => !!document.querySelector('svg'));
-        if (!svgExists) {
-            throw new Error(`未能渲染汉字 "${character}"`);
-        }
+        console.log(`汉字 "${character}" 共有 ${strokeCount} 个笔画，开始逐帧渲染...`);
 
-        await new Promise(r => setTimeout(r, 500));
-        const browserPages = await browser.pages();
-        if (browserPages.length === 0) {
-            throw new Error('浏览器在渲染开始前已退出');
-        }
+        const framesPerStroke = 10;
+        const pauseFrames = 3;
+        const holdFrames = 12;
+        let frameIndex = 0;
 
-        // 等待动画准备就绪（增加超时时间，并添加更宽松的检查）
-        try {
-            await page.waitForFunction(() => window.animationReady === true, { timeout: 15000 });
-        } catch {
-            console.warn('等待animationReady超时，继续执行...');
-            // 即使超时也继续，给一些额外时间
-            await new Promise(r => setTimeout(r, 1000));
-        }
+        for (let s = 0; s < strokeCount; s++) {
+            for (let f = 1; f <= framesPerStroke; f++) {
+                const progress = f / framesPerStroke;
+                const easedProgress = -Math.cos(progress * Math.PI) / 2 + 0.5;
 
-        
-        console.log('开始录制动画帧...');
-        
-        // 额外等待确保渲染完成
-        await new Promise(r => setTimeout(r, 500));
-        
-        // 录制帧
-        const frameInterval = 1000 / CONFIG.fps; // 每帧间隔（毫秒）
-        const totalDuration = await page.evaluate(() => window.totalAnimationDuration || 10000);
-        console.log(`使用动态录制时长: ${totalDuration} 毫秒`);
-        const totalFrames = Math.ceil(totalDuration / frameInterval);
-        
-        // 启动动画并标记开始，使用进度回调
-        await page.evaluate(() => {
-            if (window.writer) {
-                window.animationStarted = true;
-                window.writer.animateCharacter({
-                    onProgress: (progress) => {
-                        window.animationProgress = progress;
+                await page.evaluate((strokeIdx, portion) => {
+                    window.renderProgress(strokeIdx, portion);
+                }, s, easedProgress);
+
+                const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
+                await page.screenshot({
+                    path: framePath,
+                    omitBackground: CONFIG.mode === 'transparent',
+                    clip: {
+                        x: 0,
+                        y: 0,
+                        width: CONFIG.width,
+                        height: CONFIG.height
                     }
                 });
+                frameIndex++;
             }
-        });
-        
-        // 等待动画真正开始 - 等待第一个笔画出现
-        // 通过检查SVG路径元素或等待一段时间
-        let animationDetected = false;
-        for (let check = 0; check < 60; check++) {
-            await new Promise(r => setTimeout(r, 50));
-            const hasStroke = await page.evaluate(() => {
-                // 检查SVG路径元素
-                const svg = document.querySelector('svg');
-                if (svg) {
-                    const paths = svg.querySelectorAll('path');
-                    // 检查是否有路径的stroke-dasharray或stroke-dashoffset变化（表示动画进行中）
-                    for (let path of paths) {
-                        const style = window.getComputedStyle(path);
-                        const strokeDasharray = style.strokeDasharray;
-                        if (strokeDasharray && strokeDasharray !== 'none' && strokeDasharray !== '0px') {
-                            return true;
+
+            if (s < strokeCount - 1) {
+                for (let p = 0; p < pauseFrames; p++) {
+                    const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
+                    await page.screenshot({
+                        path: framePath,
+                        omitBackground: CONFIG.mode === 'transparent',
+                        clip: {
+                            x: 0,
+                            y: 0,
+                            width: CONFIG.width,
+                            height: CONFIG.height
                         }
-                        // 或者检查路径是否可见
-                        if (path.getAttribute('stroke') && path.getAttribute('stroke') !== 'none') {
-                            return true;
-                        }
-                    }
+                    });
+                    frameIndex++;
                 }
-                return false;
-            });
-            
-            if (hasStroke) {
-                animationDetected = true;
-                console.log('检测到动画开始');
-                break;
             }
         }
-        
-        // 即使没检测到，也等待一段时间确保动画开始
-        if (!animationDetected) {
-            console.log('等待动画启动...');
-            await new Promise(r => setTimeout(r, 500));
-        }
-        
-        // 在动画进行的同时录制帧
-        for (let i = 0; i < totalFrames; i++) {
-            const framePath = path.join(tempFrameDir, `frame${String(i).padStart(4, '0')}.png`);
-            
+
+        // 最后一笔完成后，全字保持展示若干帧
+        await page.evaluate((strokeIdx) => {
+            window.renderProgress(strokeIdx, 1.0);
+        }, strokeCount - 1);
+
+        for (let h = 0; h < holdFrames; h++) {
+            const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
             await page.screenshot({
                 path: framePath,
                 omitBackground: CONFIG.mode === 'transparent',
@@ -281,24 +253,14 @@ async function generateGIF(character) {
                     height: CONFIG.height
                 }
             });
-            
-            // 等待下一帧 (使用RAF mock进行步进)
-            await page.evaluate((ms) => {
-                if (window.stepAnimation) {
-                    window.stepAnimation(ms);
-                }
-            }, frameInterval);
-            
-            // 显示进度
-            if ((i + 1) % 10 === 0 || i === totalFrames - 1) {
-                console.log(`已录制 ${i + 1}/${totalFrames} 帧`);
-            }
+            frameIndex++;
         }
-        
-        console.log('开始生成GIF...');
+
+        console.log(`已成功录制 ${frameIndex} 帧动画，开始生成高清GIF...`);
 
         const outputName = CONFIG.mode === 'transparent' ? `${character}-transparent.gif` : `${character}.gif`;
         const outputPath = path.join(CONFIG.outputDir, outputName);
+        const altOutputPath = path.join(CONFIG.outputDir, `${character}.gif`);
 
         // 使用FFmpeg生成GIF
         if (checkFFmpeg()) {
@@ -306,41 +268,25 @@ async function generateGIF(character) {
             const outputWidth = CONFIG.width;
             const outputHeight = CONFIG.height;
             const vf = CONFIG.mode === 'transparent'
-                ? `scale=${outputWidth}:${outputHeight}:flags=lanczos,split[s0][s1];[s0]palettegen=reserve_transparent=1:transparency_color=000000[p];[s1][p]paletteuse=alpha_threshold=128`
+                ? `scale=${outputWidth}:${outputHeight}:flags=lanczos,split[s0][s1];[s0]palettegen=reserve_transparent=1[p];[s1][p]paletteuse=alpha_threshold=128`
                 : `scale=${outputWidth}:${outputHeight}:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse`;
-            const ffmpegCmd = `ffmpeg -y -framerate ${CONFIG.fps} -i "${path.join(tempFrameDir, 'frame%04d.png')}" -vf "${vf}" "${outputPath}"`;
+            const ffmpegCmd = `ffmpeg -y -framerate 20 -i "${path.join(tempFrameDir, 'frame%04d.png')}" -vf "${vf}" "${outputPath}"`;
             execSync(ffmpegCmd, { stdio: 'inherit' });
-            console.log(`✓ GIF生成完成: ${outputPath}`);
-
-            if (CONFIG.mode === 'transparent') {
-                const webmPath = path.join(CONFIG.outputDir, `${character}-transparent.webm`);
-                const webmCmd = `ffmpeg -y -framerate ${CONFIG.fps} -i "${path.join(tempFrameDir, 'frame%04d.png')}" -vf "scale=${outputWidth}:${outputHeight}:flags=lanczos,format=yuva420p" -c:v libvpx-vp9 -pix_fmt yuva420p -auto-alt-ref 0 "${webmPath}"`;
-                execSync(webmCmd, { stdio: 'inherit' });
-                console.log(`✓ WebM透明视频生成完成: ${webmPath}`);
+            if (outputPath !== altOutputPath) {
+                fs.copyFileSync(outputPath, altOutputPath);
             }
+            console.log(`✓ GIF生成完成: ${outputPath}`);
         } else {
-            console.warn('\n⚠️  FFmpeg未安装，无法自动生成GIF。');
-            console.log('PNG帧已保存在:', tempFrameDir);
-            console.log('\n请安装FFmpeg后运行以下命令生成GIF:');
-            const outputWidth = CONFIG.width;
-            const outputHeight = CONFIG.height;
-            const vf = CONFIG.mode === 'transparent'
-                ? `scale=${outputWidth}:${outputHeight}:flags=lanczos,split[s0][s1];[s0]palettegen=reserve_transparent=1:transparency_color=000000[p];[s1][p]paletteuse=alpha_threshold=128`
-                : `scale=${outputWidth}:${outputHeight}:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse`;
-            console.log(`ffmpeg -y -framerate ${CONFIG.fps} -i "${path.join(tempFrameDir, 'frame%04d.png')}" -vf "${vf}" "${outputPath}"`);
-            console.log('\n或安装FFmpeg:');
-            console.log('  macOS: brew install ffmpeg');
-            console.log('  Linux: sudo apt-get install ffmpeg');
             throw new Error('需要FFmpeg来生成GIF');
         }
-        
+
         // 清理临时文件
         const files = fs.readdirSync(tempFrameDir);
         for (const file of files) {
             fs.unlinkSync(path.join(tempFrameDir, file));
         }
         fs.rmdirSync(tempFrameDir);
-        
+
         return outputPath;
         
     } catch (error) {

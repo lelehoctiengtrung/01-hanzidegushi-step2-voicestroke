@@ -44,7 +44,8 @@ jobs:
             Chinese-Stroke-Order-Gen/node_modules
             stroke_generator/node_modules
             ~/.npm
-          key: ${{ runner.os }}-stroke-gen-v1
+            ~/.cache/puppeteer
+          key: ${{ runner.os }}-stroke-gen-v2
           restore-keys: |
             ${{ runner.os }}-stroke-gen-
 

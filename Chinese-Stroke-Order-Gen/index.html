@@ -128,7 +128,6 @@
     </script>
     <script src="/node_modules/hanzi-writer/dist/hanzi-writer.min.js"></script>
     <script>
-        // 从URL参数获取汉字
         const urlParams = new URLSearchParams(window.location.search);
         const character = urlParams.get('char') || '中';
         const mode = urlParams.get('mode') || 'transparent';
@@ -137,47 +136,48 @@
             document.body.classList.add('preview-mode');
         }
 
-        // 暴露writer对象供外部访问
         window.writer = null;
         window.loadError = null;
-
-        // 用于通知外部动画已准备好
         window.animationReady = false;
-        window.animationStarted = false;
-        window.animationProgress = 0;
-        window.totalAnimationDuration = 10000; // Fallback default
 
-        // Load character data to compute dynamic speed and duration
-        HanziWriter.loadCharacterData(character).then(function(charData) {
-            let strokeAnimationDuration = 1200; // Baseline: 1.2s per stroke
-            let delayBetweenStrokes = 400;       // Baseline: 0.4s pause between strokes
-
-            if (charData && charData.strokes) {
-                const strokeCount = charData.strokes.length;
-                // Nếu ký tự có trên 3 nét, viết nhanh hơn nữa (0.8s mỗi nét, 0.3s dừng)
-                if (strokeCount > 3) {
-                    strokeAnimationDuration = 800; // 0.8s
-                    delayBetweenStrokes = 300;     // 0.3s
+        window.renderProgress = function(strokeIndex, portion) {
+            if (!window.writer || !window.writer._renderState || !window.writer._character) return;
+            const totalStrokes = window.writer._character.strokes.length;
+            const strokeStates = {};
+            for (let i = 0; i < totalStrokes; i++) {
+                if (i < strokeIndex) {
+                    strokeStates[i] = { opacity: 1, displayPortion: 1 };
+                } else if (i === strokeIndex) {
+                    strokeStates[i] = { 
+                        opacity: portion > 0.001 ? 1 : 0, 
+                        displayPortion: Math.max(0, Math.min(1, portion)) 
+                    };
+                } else {
+                    strokeStates[i] = { opacity: 0, displayPortion: 0 };
                 }
-                
-                // Total duration = stroke count * writing time + (stroke count - 1) * pause time + extra buffer
-                const calculatedDuration = (strokeCount * strokeAnimationDuration) + ((strokeCount - 1) * delayBetweenStrokes) + 800;
-                window.totalAnimationDuration = Math.max(calculatedDuration, 2500); // at least 2.5 seconds
-                console.log('Strokes count:', strokeCount, 'Anim dur:', strokeAnimationDuration, 'Delay:', delayBetweenStrokes, 'Total:', window.totalAnimationDuration);
             }
+            window.writer._renderState.updateState({
+                character: {
+                    main: {
+                        opacity: 1,
+                        strokes: strokeStates
+                    }
+                }
+            });
+        };
 
+        HanziWriter.loadCharacterData(character).then(function(charData) {
             const writer = HanziWriter.create('character-container', character, {
                 width: 500,
                 height: 500,
                 padding: 30,
-                strokeColor: '#E6392E', // Đỏ son
+                strokeColor: '#800020', // Bordeaux Red
                 strokeWidth: 5,
                 showCharacter: false,
                 showOutline: false,
-                delayBetweenStrokes: delayBetweenStrokes,
+                delayBetweenStrokes: 0,
                 delayBetweenLoops: 0,
-                strokeAnimationDuration: strokeAnimationDuration,
-                radicalColor: '#FF0000'
+                radicalColor: '#800020'
             });
 
             window.writer = writer;

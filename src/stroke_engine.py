@@ -10,7 +10,10 @@ from PIL import Image, ImageDraw
 from src.stroke_cache import StrokeCache
 
 logger = logging.getLogger(__name__)
-STROKE_GEN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "stroke_generator")
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+STROKE_GEN_DIR = os.path.join(ROOT_DIR, "Chinese-Stroke-Order-Gen")
+if not os.path.exists(STROKE_GEN_DIR):
+    STROKE_GEN_DIR = os.path.join(ROOT_DIR, "stroke_generator")
 
 
 class StrokeEngine:
@@ -64,15 +67,20 @@ class StrokeEngine:
         node_success = False
         try:
             cmd = ["node", "generate.js", character]
-            res = subprocess.run(cmd, cwd=STROKE_GEN_DIR, capture_output=True, text=True, timeout=60)
+            logger.info(f"🎨 Running HanziWriter Puppeteer: {cmd} in {STROKE_GEN_DIR}")
+            res = subprocess.run(cmd, cwd=STROKE_GEN_DIR, capture_output=True, text=True, timeout=120)
             if res.returncode == 0:
-                gen_out = os.path.join(STROKE_GEN_DIR, "output", f"{character}.gif")
-                if os.path.exists(gen_out):
-                    shutil.copy(gen_out, dest_gif)
-                    node_success = True
-                    logger.info(f"🎨 Generated '{character}' stroke_order.gif via HanziWriter Puppeteer.")
+                for cand in [f"{character}-transparent.gif", f"{character}.gif", f"{character}.GIF"]:
+                    gen_out = os.path.join(STROKE_GEN_DIR, "output", cand)
+                    if os.path.exists(gen_out) and os.path.getsize(gen_out) > 1000:
+                        shutil.copy(gen_out, dest_gif)
+                        node_success = True
+                        logger.info(f"🎨 Generated '{character}' stroke_order.gif via HanziWriter Puppeteer ({cand}).")
+                        break
+            else:
+                logger.warning(f"Node Puppeteer failed (code {res.returncode}): {res.stderr}\n{res.stdout}")
         except Exception as e:
-            logger.warning(f"Node Puppeteer stroke generation note: {e}")
+            logger.warning(f"Node Puppeteer stroke generation exception: {e}")
 
         # 2. Fallback generator if Node was not available
         stroke_data = self.cache.get_stroke_data(character) or {}
@@ -81,7 +89,7 @@ class StrokeEngine:
 
         if not node_success or not os.path.exists(dest_gif):
             self._generate_fallback_gif(character, stroke_data, dest_gif)
-            logger.info(f"🎨 Generated '{character}' stroke_order.gif via High-Quality Fallback GIF Engine.")
+            logger.info(f"🎨 Generated '{character}' stroke_order.gif via Fallback GIF Engine.")
 
         info = {
             "character": character,
