@@ -146,14 +146,21 @@
                     showOutline: false,
                     delayBetweenStrokes: 0,
                     delayBetweenLoops: 0,
-                    radicalColor: '#800020'
+                    radicalColor: '#800020',
+                    onLoadCharDataSuccess: function(data) {
+                        window.charDataLoaded = true;
+                        window.animationReady = true;
+                    },
+                    onLoadCharDataError: function(err) {
+                        window.loadError = (err && err.message) || String(err);
+                        window.animationReady = true;
+                    }
                 };
                 if (charData) {
                     options.charDataLoader = (char, onComplete) => onComplete(charData);
                 }
                 const writer = HanziWriter.create('character-container', character, options);
                 window.writer = writer;
-                window.animationReady = true;
             } catch (err) {
                 console.error('Error creating HanziWriter:', err);
                 window.loadError = err.message || 'Error creating HanziWriter';

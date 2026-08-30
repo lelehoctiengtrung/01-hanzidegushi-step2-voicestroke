@@ -204,8 +204,11 @@ async function generateGIF(character) {
             timeout: 30000
         });
 
-        // 等待Hanzi Writer加载
-        await page.waitForFunction(() => window.animationReady === true, { timeout: 15000 });
+        // 等待Hanzi Writer完全加载完成并初始化_character
+        await page.waitForFunction(() => {
+            if (window.loadError) return true;
+            return window.animationReady === true && window.writer && window.writer._character;
+        }, { timeout: 15000 });
 
         const loadError = await page.evaluate(() => window.loadError || null);
         if (loadError) {
@@ -213,8 +216,13 @@ async function generateGIF(character) {
         }
 
         const strokeCount = await page.evaluate(() => {
-            if (!window.writer || !window.writer._character) return 0;
-            return window.writer._character.strokes.length;
+            if (window.writer && window.writer._character && window.writer._character.strokes) {
+                return window.writer._character.strokes.length;
+            }
+            if (window.__INITIAL_CHAR_DATA__ && window.__INITIAL_CHAR_DATA__.strokes) {
+                return window.__INITIAL_CHAR_DATA__.strokes.length;
+            }
+            return 0;
         });
 
         if (strokeCount === 0) {
