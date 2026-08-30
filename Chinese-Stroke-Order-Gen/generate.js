@@ -231,15 +231,8 @@ async function generateGIF(character) {
             throw new Error(`未能获取汉字 "${character}" 的笔画数据`);
         }
 
-        const debugInfo = await page.evaluate(() => {
-            const svgEl = document.querySelector('#character-container svg');
-            return {
-                svgFound: !!svgEl,
-                svgHtml: svgEl ? svgEl.outerHTML.slice(0, 300) : 'none',
-                writerRenderState: window.writer && window.writer._renderState ? JSON.stringify(window.writer._renderState.state) : 'none'
-            };
-        });
-        console.log(`[DEBUG SVG]: ${JSON.stringify(debugInfo)}`);
+        const containerHtml = await page.evaluate(() => document.querySelector('#character-container').innerHTML);
+        console.log(`[FULL CONTAINER HTML]:\n${containerHtml}`);
 
         console.log(`汉字 "${character}" 共有 ${strokeCount} 个笔画，开始逐帧渲染...`);
 
