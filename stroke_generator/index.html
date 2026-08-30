@@ -22,19 +22,10 @@
             position: relative;
             overflow: hidden;
         }
-        #canvas-container {
+        #canvas-container, #character-container, svg {
             width: 500px;
             height: 500px;
             position: relative;
-            background: transparent !important;
-        }
-        #character-container {
-            width: 500px;
-            height: 500px;
-            position: relative;
-            background: transparent !important;
-        }
-        svg {
             background: transparent !important;
         }
     </style>
@@ -63,74 +54,53 @@
             strokeWidth: 6,
             showCharacter: false,
             showOutline: false,
-            delayBetweenStrokes: 300,
-            strokeAnimationDuration: 800
+            delayBetweenStrokes: 350,
+            strokeAnimationDuration: 900
         });
 
         window.writer = writer;
         window.animationReady = false;
-        window.animationStarted = false;
         window.animationComplete = false;
 
-        async function startMultiColorAnimation() {
-            window.animationStarted = true;
+        async function runAnimation() {
             try {
-                // Get character stroke count
-                const charData = await HanziWriter.loadCharacterData(character);
-                const strokeCount = charData.strokes.length;
+                let charData = null;
+                try {
+                    charData = await HanziWriter.loadCharacterData(character);
+                } catch(e) {
+                    charData = writer._character;
+                }
+                const strokeCount = charData && charData.strokes ? charData.strokes.length : 3;
 
-                // Animate each stroke with its distinct rainbow color
                 for (let i = 0; i < strokeCount; i++) {
                     const color = RAINBOW_PALETTE[i % RAINBOW_PALETTE.length];
-                    
-                    // Set current stroke color before animating
-                    await writer.animateStroke(i, {
-                        strokeColor: color
-                    });
-                    
-                    // Style the rendered SVG stroke path to persist its multi-color
-                    const svg = document.querySelector('#character-container svg');
-                    if (svg) {
-                        const paths = svg.querySelectorAll('path');
-                        if (paths[i]) {
-                            paths[i].setAttribute('stroke', color);
-                            paths[i].style.stroke = color;
-                        }
-                    }
-                    await new Promise(r => setTimeout(r, 200));
+                    await writer.animateStroke(i, { strokeColor: color });
+                    await new Promise(r => setTimeout(r, 250));
                 }
 
-                // Brief pause after all strokes are drawn
                 await new Promise(r => setTimeout(r, 400));
-
-                // Turn all strokes into Bordeaux Red (#800020)
-                const svg = document.querySelector('#character-container svg');
-                if (svg) {
-                    const paths = svg.querySelectorAll('path');
-                    paths.forEach(p => {
-                        p.setAttribute('stroke', BORDEAUX_RED);
-                        p.style.stroke = BORDEAUX_RED;
-                    });
-                }
-                await writer.updateColor('strokeColor', BORDEAUX_RED);
-
-                // Hold final Bordeaux Red state for 1.2 seconds
+                const paths = document.querySelectorAll('#character-container svg path');
+                paths.forEach(p => {
+                    p.setAttribute('stroke', BORDEAUX_RED);
+                    p.style.stroke = BORDEAUX_RED;
+                });
                 await new Promise(r => setTimeout(r, 1200));
                 window.animationComplete = true;
             } catch (err) {
                 console.error('Animation error:', err);
-                // Fallback standard animation
                 await writer.animateCharacter();
-                await writer.updateColor('strokeColor', BORDEAUX_RED);
+                const paths = document.querySelectorAll('#character-container svg path');
+                paths.forEach(p => {
+                    p.setAttribute('stroke', BORDEAUX_RED);
+                    p.style.stroke = BORDEAUX_RED;
+                });
+                await new Promise(r => setTimeout(r, 1000));
                 window.animationComplete = true;
             }
         }
 
-        window.startMultiColorAnimation = startMultiColorAnimation;
-
-        setTimeout(() => {
-            window.animationReady = true;
-        }, 600);
+        window.runAnimation = runAnimation;
+        setTimeout(() => { window.animationReady = true; }, 800);
     </script>
 </body>
 </html>

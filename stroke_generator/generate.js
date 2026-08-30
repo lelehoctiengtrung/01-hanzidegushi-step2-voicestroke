@@ -13,12 +13,8 @@ const CONFIG = {
     tempDir: path.join(__dirname, 'temp')
 };
 
-if (!fs.existsSync(CONFIG.outputDir)) {
-    fs.mkdirSync(CONFIG.outputDir, { recursive: true });
-}
-if (!fs.existsSync(CONFIG.tempDir)) {
-    fs.mkdirSync(CONFIG.tempDir, { recursive: true });
-}
+if (!fs.existsSync(CONFIG.outputDir)) fs.mkdirSync(CONFIG.outputDir, { recursive: true });
+if (!fs.existsSync(CONFIG.tempDir)) fs.mkdirSync(CONFIG.tempDir, { recursive: true });
 
 function checkFFmpeg() {
     try {
@@ -85,7 +81,7 @@ function stopStaticServer(server) {
 }
 
 async function generateGIF(character) {
-    console.log(`🎨 Generating transparent stroke_order.gif for "${character}"...`);
+    console.log(`🎨 Generating transparent multi-color Bordeaux Red stroke_order.gif for "${character}"...`);
     const { server, origin } = await startStaticServer(__dirname);
     let browser;
     const tempFrameDir = path.join(CONFIG.tempDir, character);
@@ -109,15 +105,15 @@ async function generateGIF(character) {
         await page.waitForFunction(() => window.animationReady === true, { timeout: 15000 });
         await new Promise(r => setTimeout(r, 400));
 
-        // Start multi-color animation and transition to Bordeaux Red
-        await page.evaluate(() => window.startMultiColorAnimation());
+        // Start multi-color stroke animation in page
+        await page.evaluate(() => window.runAnimation());
 
         const frameInterval = 1000 / CONFIG.fps;
-        const maxFrames = 120; // max 8 seconds
+        const maxFrames = 150; // max 10 seconds
         let frameCount = 0;
 
         for (let i = 0; i < maxFrames; i++) {
-            const framePath = path.join(tempFrameDir, `frame${String(i).padStart(4, '0')}.png`);
+            const framePath = path.join(tempFrameDir, `frame${String(frameCount).padStart(4, '0')}.png`);
             await page.screenshot({
                 path: framePath,
                 omitBackground: true,
@@ -125,20 +121,22 @@ async function generateGIF(character) {
             });
             frameCount++;
 
-            const isDone = await page.evaluate(() => window.animationComplete === true);
-            if (isDone) {
-                // Record 3 more holding frames
-                for (let h = 0; h < 3; h++) {
-                    i++;
-                    const hPath = path.join(tempFrameDir, `frame${String(i).padStart(4, '0')}.png`);
-                    await page.screenshot({
-                        path: hPath,
-                        omitBackground: true,
-                        clip: { x: 0, y: 0, width: CONFIG.width, height: CONFIG.height }
-                    });
-                    frameCount++;
+            // Check if animation completed after minimum 35 frames
+            if (i >= 35) {
+                const isDone = await page.evaluate(() => window.animationComplete === true);
+                if (isDone) {
+                    // Record 10 more holding frames in Bordeaux Red
+                    for (let h = 0; h < 10; h++) {
+                        const hPath = path.join(tempFrameDir, `frame${String(frameCount).padStart(4, '0')}.png`);
+                        await page.screenshot({
+                            path: hPath,
+                            omitBackground: true,
+                            clip: { x: 0, y: 0, width: CONFIG.width, height: CONFIG.height }
+                        });
+                        frameCount++;
+                    }
+                    break;
                 }
-                break;
             }
             await new Promise(r => setTimeout(r, frameInterval));
         }
