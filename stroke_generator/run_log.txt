@@ -1,0 +1,1218 @@
+generate-gifs	Set up job	﻿2026-05-09T14:05:57.8949385Z Current runner version: '2.334.0'
+generate-gifs	Set up job	2026-05-09T14:05:57.9037839Z ##[group]Runner Image Provisioner
+generate-gifs	Set up job	2026-05-09T14:05:57.9039433Z Hosted Compute Agent
+generate-gifs	Set up job	2026-05-09T14:05:57.9040575Z Version: 20260213.493
+generate-gifs	Set up job	2026-05-09T14:05:57.9041846Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+generate-gifs	Set up job	2026-05-09T14:05:57.9043215Z Build Date: 2026-02-13T00:28:41Z
+generate-gifs	Set up job	2026-05-09T14:05:57.9045263Z Worker ID: ***244ca997-afb5-4a79-8de8-3ae07e244c77***
+generate-gifs	Set up job	2026-05-09T14:05:57.9056410Z Azure Region: westcentralus
+generate-gifs	Set up job	2026-05-09T14:05:57.9068284Z ##[endgroup]
+generate-gifs	Set up job	2026-05-09T14:05:57.9070613Z ##[group]Operating System
+generate-gifs	Set up job	2026-05-09T14:05:57.9071885Z Ubuntu
+generate-gifs	Set up job	2026-05-09T14:05:57.9073000Z 24.04.4
+generate-gifs	Set up job	2026-05-09T14:05:57.9074036Z LTS
+generate-gifs	Set up job	2026-05-09T14:05:57.9074972Z ##[endgroup]
+generate-gifs	Set up job	2026-05-09T14:05:57.9076152Z ##[group]Runner Image
+generate-gifs	Set up job	2026-05-09T14:05:57.9080889Z Image: ubuntu-24.04
+generate-gifs	Set up job	2026-05-09T14:05:57.9082270Z Version: 20260413.86.1
+generate-gifs	Set up job	2026-05-09T14:05:57.9084218Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260413.86/images/ubuntu/Ubuntu2404-Readme.md
+generate-gifs	Set up job	2026-05-09T14:05:57.9098082Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260413.86
+generate-gifs	Set up job	2026-05-09T14:05:57.9099974Z ##[endgroup]
+generate-gifs	Set up job	2026-05-09T14:05:57.9102459Z ##[group]GITHUB_TOKEN Permissions
+generate-gifs	Set up job	2026-05-09T14:05:57.9105666Z Contents: read
+generate-gifs	Set up job	2026-05-09T14:05:57.9107217Z Metadata: read
+generate-gifs	Set up job	2026-05-09T14:05:57.9108267Z Packages: read
+generate-gifs	Set up job	2026-05-09T14:05:57.9109481Z ##[endgroup]
+generate-gifs	Set up job	2026-05-09T14:05:57.9112504Z Secret source: Actions
+generate-gifs	Set up job	2026-05-09T14:05:57.9114003Z Prepare workflow directory
+generate-gifs	Set up job	2026-05-09T14:05:57.9632506Z Prepare all required actions
+generate-gifs	Set up job	2026-05-09T14:05:57.9687893Z Getting action download info
+generate-gifs	Set up job	2026-05-09T14:05:58.3961399Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+generate-gifs	Set up job	2026-05-09T14:05:58.5281838Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+generate-gifs	Set up job	2026-05-09T14:05:58.6264056Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+generate-gifs	Set up job	2026-05-09T14:05:58.8233396Z Complete job name: generate-gifs
+generate-gifs	Checkout code	﻿2026-05-09T14:05:58.8981836Z ##[group]Run actions/checkout@v4
+generate-gifs	Checkout code	2026-05-09T14:05:58.8982825Z with:
+generate-gifs	Checkout code	2026-05-09T14:05:58.8983469Z   repository: alerondt-hanario/hanzi-generator-actions
+generate-gifs	Checkout code	2026-05-09T14:05:58.8984428Z   token: ***
+generate-gifs	Checkout code	2026-05-09T14:05:58.8984961Z   ssh-strict: true
+generate-gifs	Checkout code	2026-05-09T14:05:58.8985507Z   ssh-user: git
+generate-gifs	Checkout code	2026-05-09T14:05:58.8986050Z   persist-credentials: true
+generate-gifs	Checkout code	2026-05-09T14:05:58.8987085Z   clean: true
+generate-gifs	Checkout code	2026-05-09T14:05:58.8987669Z   sparse-checkout-cone-mode: true
+generate-gifs	Checkout code	2026-05-09T14:05:58.8988300Z   fetch-depth: 1
+generate-gifs	Checkout code	2026-05-09T14:05:58.8988826Z   fetch-tags: false
+generate-gifs	Checkout code	2026-05-09T14:05:58.8989374Z   show-progress: true
+generate-gifs	Checkout code	2026-05-09T14:05:58.8989916Z   lfs: false
+generate-gifs	Checkout code	2026-05-09T14:05:58.8990431Z   submodules: false
+generate-gifs	Checkout code	2026-05-09T14:05:58.8990982Z   set-safe-directory: true
+generate-gifs	Checkout code	2026-05-09T14:05:58.8991856Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.0255076Z Syncing repository: alerondt-hanario/hanzi-generator-actions
+generate-gifs	Checkout code	2026-05-09T14:05:59.0263803Z ##[group]Getting Git version info
+generate-gifs	Checkout code	2026-05-09T14:05:59.0265775Z Working directory is '/home/runner/work/hanzi-generator-actions/hanzi-generator-actions'
+generate-gifs	Checkout code	2026-05-09T14:05:59.0271071Z [command]/usr/bin/git version
+generate-gifs	Checkout code	2026-05-09T14:05:59.0287755Z git version 2.53.0
+generate-gifs	Checkout code	2026-05-09T14:05:59.0309870Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.0327379Z Temporarily overriding HOME='/home/runner/work/_temp/70c98e27-5160-443f-bd7e-e9417ec46bb2' before making global git config changes
+generate-gifs	Checkout code	2026-05-09T14:05:59.0330227Z Adding repository directory to the temporary git global config as a safe directory
+generate-gifs	Checkout code	2026-05-09T14:05:59.0338361Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hanzi-generator-actions/hanzi-generator-actions
+generate-gifs	Checkout code	2026-05-09T14:05:59.0384971Z Deleting the contents of '/home/runner/work/hanzi-generator-actions/hanzi-generator-actions'
+generate-gifs	Checkout code	2026-05-09T14:05:59.0394476Z ##[group]Initializing the repository
+generate-gifs	Checkout code	2026-05-09T14:05:59.0398233Z [command]/usr/bin/git init /home/runner/work/hanzi-generator-actions/hanzi-generator-actions
+generate-gifs	Checkout code	2026-05-09T14:05:59.0497809Z hint: Using 'master' as the name for the initial branch. This default branch name
+generate-gifs	Checkout code	2026-05-09T14:05:59.0499864Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+generate-gifs	Checkout code	2026-05-09T14:05:59.0501274Z hint: to use in all of your new repositories, which will suppress this warning,
+generate-gifs	Checkout code	2026-05-09T14:05:59.0502119Z hint: call:
+generate-gifs	Checkout code	2026-05-09T14:05:59.0502636Z hint:
+generate-gifs	Checkout code	2026-05-09T14:05:59.0503261Z hint: 	git config --global init.defaultBranch <name>
+generate-gifs	Checkout code	2026-05-09T14:05:59.0504001Z hint:
+generate-gifs	Checkout code	2026-05-09T14:05:59.0504684Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+generate-gifs	Checkout code	2026-05-09T14:05:59.0505704Z hint: 'development'. The just-created branch can be renamed via this command:
+generate-gifs	Checkout code	2026-05-09T14:05:59.0506854Z hint:
+generate-gifs	Checkout code	2026-05-09T14:05:59.0507643Z hint: 	git branch -m <name>
+generate-gifs	Checkout code	2026-05-09T14:05:59.0508520Z hint:
+generate-gifs	Checkout code	2026-05-09T14:05:59.0509700Z hint: Disable this message with "git config set advice.defaultBranchName false"
+generate-gifs	Checkout code	2026-05-09T14:05:59.0512121Z Initialized empty Git repository in /home/runner/work/hanzi-generator-actions/hanzi-generator-actions/.git/
+generate-gifs	Checkout code	2026-05-09T14:05:59.0515563Z [command]/usr/bin/git remote add origin https://github.com/alerondt-hanario/hanzi-generator-actions
+generate-gifs	Checkout code	2026-05-09T14:05:59.0555313Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.0557642Z ##[group]Disabling automatic garbage collection
+generate-gifs	Checkout code	2026-05-09T14:05:59.0559228Z [command]/usr/bin/git config --local gc.auto 0
+generate-gifs	Checkout code	2026-05-09T14:05:59.0595396Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.0597521Z ##[group]Setting up auth
+generate-gifs	Checkout code	2026-05-09T14:05:59.0602933Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+generate-gifs	Checkout code	2026-05-09T14:05:59.0640423Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+generate-gifs	Checkout code	2026-05-09T14:05:59.0962340Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+generate-gifs	Checkout code	2026-05-09T14:05:59.1006361Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+generate-gifs	Checkout code	2026-05-09T14:05:59.1267684Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+generate-gifs	Checkout code	2026-05-09T14:05:59.1303520Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+generate-gifs	Checkout code	2026-05-09T14:05:59.1579316Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+generate-gifs	Checkout code	2026-05-09T14:05:59.1613902Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.1615797Z ##[group]Fetching the repository
+generate-gifs	Checkout code	2026-05-09T14:05:59.1625177Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +02ee3fc5c54d709272c5ef0a2867a49c6389bebb:refs/remotes/origin/main
+generate-gifs	Checkout code	2026-05-09T14:05:59.5964436Z From https://github.com/alerondt-hanario/hanzi-generator-actions
+generate-gifs	Checkout code	2026-05-09T14:05:59.5970067Z  * [new ref]         02ee3fc5c54d709272c5ef0a2867a49c6389bebb -> origin/main
+generate-gifs	Checkout code	2026-05-09T14:05:59.6097533Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.6100226Z ##[group]Determining the checkout info
+generate-gifs	Checkout code	2026-05-09T14:05:59.6102756Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.6104245Z [command]/usr/bin/git sparse-checkout disable
+generate-gifs	Checkout code	2026-05-09T14:05:59.6109882Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+generate-gifs	Checkout code	2026-05-09T14:05:59.6115180Z ##[group]Checking out the ref
+generate-gifs	Checkout code	2026-05-09T14:05:59.6121873Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+generate-gifs	Checkout code	2026-05-09T14:05:59.6155954Z Switched to a new branch 'main'
+generate-gifs	Checkout code	2026-05-09T14:05:59.6159678Z branch 'main' set up to track 'origin/main'.
+generate-gifs	Checkout code	2026-05-09T14:05:59.6169220Z ##[endgroup]
+generate-gifs	Checkout code	2026-05-09T14:05:59.6205846Z [command]/usr/bin/git log -1 --format=%H
+generate-gifs	Checkout code	2026-05-09T14:05:59.6231328Z 02ee3fc5c54d709272c5ef0a2867a49c6389bebb
+generate-gifs	Setup Node.js	﻿2026-05-09T14:05:59.6597622Z ##[group]Run actions/setup-node@v4
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6599035Z with:
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6600011Z   node-version: 18
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6601059Z   cache: npm
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6602304Z   always-auth: false
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6603407Z   check-latest: false
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6604784Z   token: ***
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.6605777Z ##[endgroup]
+generate-gifs	Setup Node.js	2026-05-09T14:05:59.8758991Z Attempting to download 18...
+generate-gifs	Setup Node.js	2026-05-09T14:06:00.7501771Z Acquiring 18.20.8 - x64 from https://github.com/actions/node-versions/releases/download/18.20.8-14110393767/node-18.20.8-linux-x64.tar.gz
+generate-gifs	Setup Node.js	2026-05-09T14:06:01.5171120Z Extracting ...
+generate-gifs	Setup Node.js	2026-05-09T14:06:01.5293318Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/6fcdbb43-cf91-4988-9bca-4335b0f60018 -f /home/runner/work/_temp/8384c3d6-17fe-49d2-b407-c29ee7bea5fa
+generate-gifs	Setup Node.js	2026-05-09T14:06:02.7029058Z Adding to the cache ...
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.0029529Z ##[group]Environment details
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.2959021Z node: v18.20.8
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.2977218Z npm: 10.8.2
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.2978034Z yarn: 1.22.22
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.2983160Z ##[endgroup]
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.3007461Z [command]/opt/hostedtoolcache/node/18.20.8/x64/bin/npm config get cache
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.4238859Z /home/runner/.npm
+generate-gifs	Setup Node.js	2026-05-09T14:06:05.6197835Z Cache hit for: node-cache-Linux-x64-npm-e7577d0e1450756693bb4c037c09c1088ee62790b6806778d38c6ede0e02e648
+generate-gifs	Setup Node.js	2026-05-09T14:06:06.6425845Z Received 7368817 of 7368817 (100.0%), 8.7 MBs/sec
+generate-gifs	Setup Node.js	2026-05-09T14:06:06.6427270Z Cache Size: ~7 MB (7368817 B)
+generate-gifs	Setup Node.js	2026-05-09T14:06:06.6453823Z [command]/usr/bin/tar -xf /home/runner/work/_temp/2a50794c-08f6-4fa8-aa9a-eddfa3caffe9/cache.tzst -P -C /home/runner/work/hanzi-generator-actions/hanzi-generator-actions --use-compress-program unzstd
+generate-gifs	Setup Node.js	2026-05-09T14:06:06.6850272Z Cache restored successfully
+generate-gifs	Setup Node.js	2026-05-09T14:06:06.6877803Z Cache restored from key: node-cache-Linux-x64-npm-e7577d0e1450756693bb4c037c09c1088ee62790b6806778d38c6ede0e02e648
+generate-gifs	Install Node Dependencies	﻿2026-05-09T14:06:06.7114053Z ##[group]Run npm ci --ignore-scripts
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:06.7114584Z ^[[36;1mnpm ci --ignore-scripts^[[0m
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:06.7144316Z shell: /usr/bin/bash -e ***0***
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:06.7144763Z ##[endgroup]
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8835931Z 
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8845851Z added 100 packages, and audited 101 packages in 2s
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8847480Z 
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8848247Z 7 packages are looking for funding
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8849295Z   run `npm fund` for details
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8851095Z 
+generate-gifs	Install Node Dependencies	2026-05-09T14:06:08.8851657Z found 0 vulnerabilities
+generate-gifs	Setup Python	﻿2026-05-09T14:06:08.9074962Z ##[group]Run actions/setup-python@v5
+generate-gifs	Setup Python	2026-05-09T14:06:08.9075344Z with:
+generate-gifs	Setup Python	2026-05-09T14:06:08.9075615Z   python-version: 3.11
+generate-gifs	Setup Python	2026-05-09T14:06:08.9075911Z   cache: pip
+generate-gifs	Setup Python	2026-05-09T14:06:08.9076179Z   check-latest: false
+generate-gifs	Setup Python	2026-05-09T14:06:08.9076977Z   token: ***
+generate-gifs	Setup Python	2026-05-09T14:06:08.9077251Z   update-environment: true
+generate-gifs	Setup Python	2026-05-09T14:06:08.9077585Z   allow-prereleases: false
+generate-gifs	Setup Python	2026-05-09T14:06:08.9077904Z   freethreaded: false
+generate-gifs	Setup Python	2026-05-09T14:06:08.9078193Z ##[endgroup]
+generate-gifs	Setup Python	2026-05-09T14:06:09.1117100Z ##[group]Installed versions
+generate-gifs	Setup Python	2026-05-09T14:06:09.1227655Z Successfully set up CPython (3.11.15)
+generate-gifs	Setup Python	2026-05-09T14:06:09.1237569Z ##[endgroup]
+generate-gifs	Setup Python	2026-05-09T14:06:09.6483608Z [command]/opt/hostedtoolcache/Python/3.11.15/x64/bin/pip cache dir
+generate-gifs	Setup Python	2026-05-09T14:06:09.9507835Z /home/runner/.cache/pip
+generate-gifs	Setup Python	2026-05-09T14:06:10.2078189Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.11.15-pip-c0d4ed02e72dfdcd3bbeb4b4d7b3cbfd72e89c0c115af177eed66899309bf5d7
+generate-gifs	Setup Python	2026-05-09T14:06:11.4508622Z Received 19953774 of 24148078 (82.6%), 19.0 MBs/sec
+generate-gifs	Setup Python	2026-05-09T14:06:11.4810589Z Received 24148078 of 24148078 (100.0%), 22.3 MBs/sec
+generate-gifs	Setup Python	2026-05-09T14:06:11.4811840Z Cache Size: ~23 MB (24148078 B)
+generate-gifs	Setup Python	2026-05-09T14:06:11.4840986Z [command]/usr/bin/tar -xf /home/runner/work/_temp/228d69ae-1749-4748-882e-7360582f3b0c/cache.tzst -P -C /home/runner/work/hanzi-generator-actions/hanzi-generator-actions --use-compress-program unzstd
+generate-gifs	Setup Python	2026-05-09T14:06:11.5454155Z Cache restored successfully
+generate-gifs	Setup Python	2026-05-09T14:06:11.5471590Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.11.15-pip-c0d4ed02e72dfdcd3bbeb4b4d7b3cbfd72e89c0c115af177eed66899309bf5d7
+generate-gifs	Install Python Dependencies	﻿2026-05-09T14:06:11.5637528Z ##[group]Run pip install -r requirements.txt
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5638234Z ^[[36;1mpip install -r requirements.txt^[[0m
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5663769Z shell: /usr/bin/bash -e ***0***
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5664124Z env:
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5664481Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5665027Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5665542Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5665999Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5666706Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5667187Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:11.5667580Z ##[endgroup]
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.5003059Z Collecting gspread>=6.0.0 (from -r requirements.txt (line 1))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.5020970Z   Using cached gspread-6.2.1-py3-none-any.whl.metadata (11 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.5303762Z Collecting gspread-formatting>=1.1.2 (from -r requirements.txt (line 2))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.5324687Z   Using cached gspread_formatting-1.2.1-py2.py3-none-any.whl.metadata (13 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.5878255Z Collecting google-api-python-client>=2.0.0 (from -r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.5897075Z   Using cached google_api_python_client-2.196.0-py3-none-any.whl.metadata (7.0 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.6480168Z Collecting google-auth>=2.0.0 (from -r requirements.txt (line 4))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.6498676Z   Using cached google_auth-2.52.0-py3-none-any.whl.metadata (5.5 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.6789481Z Collecting google-auth-oauthlib>=1.0.0 (from -r requirements.txt (line 5))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.6804962Z   Using cached google_auth_oauthlib-1.4.0-py3-none-any.whl.metadata (2.6 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.7064238Z Collecting google-auth-httplib2>=0.1.0 (from -r requirements.txt (line 6))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.7080555Z   Using cached google_auth_httplib2-0.4.0-py3-none-any.whl.metadata (3.0 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.7426216Z Collecting httplib2<1.0.0,>=0.19.0 (from google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.7442085Z   Using cached httplib2-0.31.2-py3-none-any.whl.metadata (2.2 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.8008622Z Collecting google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5 (from google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.8025977Z   Using cached google_api_core-2.30.3-py3-none-any.whl.metadata (3.1 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.8278962Z Collecting uritemplate<5,>=3.0.1 (from google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.8294288Z   Using cached uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.8630577Z Collecting pyasn1-modules>=0.2.1 (from google-auth>=2.0.0->-r requirements.txt (line 4))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:12.8655315Z   Using cached pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:13.1039314Z Collecting cryptography>=38.0.3 (from google-auth>=2.0.0->-r requirements.txt (line 4))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:13.1055158Z   Using cached cryptography-48.0.0-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.0658144Z Collecting googleapis-common-protos<2.0.0,>=1.63.2 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.0674166Z   Using cached googleapis_common_protos-1.75.0-py3-none-any.whl.metadata (8.6 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.3182722Z Collecting protobuf<8.0.0,>=4.25.8 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.3199284Z   Using cached protobuf-7.34.1-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.3481584Z Collecting proto-plus<2.0.0,>=1.22.3 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.3497303Z   Using cached proto_plus-1.28.0-py3-none-any.whl.metadata (2.2 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.3883839Z Collecting requests<3.0.0,>=2.20.0 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.3899856Z   Using cached requests-2.33.1-py3-none-any.whl.metadata (4.8 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.4517254Z Collecting pyparsing<4,>=3.1 (from httplib2<1.0.0,>=0.19.0->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.4533116Z   Using cached pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.5518998Z Collecting charset_normalizer<4,>=2 (from requests<3.0.0,>=2.20.0->google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.5538051Z   Using cached charset_normalizer-3.4.7-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.5848197Z Collecting idna<4,>=2.5 (from requests<3.0.0,>=2.20.0->google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.5859579Z   Using cached idna-3.13-py3-none-any.whl.metadata (8.0 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.6189346Z Collecting urllib3<3,>=1.26 (from requests<3.0.0,>=2.20.0->google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.6204893Z   Using cached urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.6502760Z Collecting certifi>=2023.5.7 (from requests<3.0.0,>=2.20.0->google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client>=2.0.0->-r requirements.txt (line 3))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.6518710Z   Using cached certifi-2026.4.22-py3-none-any.whl.metadata (2.5 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.6844691Z Collecting requests-oauthlib>=0.7.0 (from google-auth-oauthlib>=1.0.0->-r requirements.txt (line 5))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.6860194Z   Using cached requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.7803319Z Collecting cffi>=2.0.0 (from cryptography>=38.0.3->google-auth>=2.0.0->-r requirements.txt (line 4))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.7820198Z   Using cached cffi-2.0.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.6 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8065122Z Collecting pycparser (from cffi>=2.0.0->cryptography>=38.0.3->google-auth>=2.0.0->-r requirements.txt (line 4))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8080698Z   Using cached pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8410918Z Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth>=2.0.0->-r requirements.txt (line 4))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8426924Z   Using cached pyasn1-0.6.3-py3-none-any.whl.metadata (8.4 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8691023Z Collecting oauthlib>=3.0.0 (from requests-oauthlib>=0.7.0->google-auth-oauthlib>=1.0.0->-r requirements.txt (line 5))
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8706993Z   Using cached oauthlib-3.3.1-py3-none-any.whl.metadata (7.9 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8789639Z Using cached gspread-6.2.1-py3-none-any.whl (59 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8806319Z Using cached gspread_formatting-1.2.1-py2.py3-none-any.whl (22 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8820805Z Using cached google_api_python_client-2.196.0-py3-none-any.whl (15.2 MB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8887727Z Using cached google_auth-2.52.0-py3-none-any.whl (245 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8902349Z Using cached google_auth_httplib2-0.4.0-py3-none-any.whl (9.5 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8915955Z Using cached google_api_core-2.30.3-py3-none-any.whl (173 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8930639Z Using cached googleapis_common_protos-1.75.0-py3-none-any.whl (300 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8945180Z Using cached httplib2-0.31.2-py3-none-any.whl (91 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8959282Z Using cached proto_plus-1.28.0-py3-none-any.whl (50 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8973110Z Using cached protobuf-7.34.1-cp310-abi3-manylinux2014_x86_64.whl (324 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.8987913Z Using cached pyparsing-3.3.2-py3-none-any.whl (122 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9004743Z Using cached requests-2.33.1-py3-none-any.whl (64 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9019746Z Using cached charset_normalizer-3.4.7-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (214 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9033770Z Using cached idna-3.13-py3-none-any.whl (68 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9048149Z Using cached uritemplate-4.2.0-py3-none-any.whl (11 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9061716Z Using cached urllib3-2.7.0-py3-none-any.whl (131 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9075884Z Using cached google_auth_oauthlib-1.4.0-py3-none-any.whl (19 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9090181Z Using cached certifi-2026.4.22-py3-none-any.whl (135 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9104321Z Using cached cryptography-48.0.0-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9134686Z Using cached cffi-2.0.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (215 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9149040Z Using cached pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9163261Z Using cached pyasn1-0.6.3-py3-none-any.whl (83 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9178182Z Using cached requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9191692Z Using cached oauthlib-3.3.1-py3-none-any.whl (160 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9205771Z Using cached pycparser-3.0-py3-none-any.whl (48 kB)
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:14.9955587Z Installing collected packages: urllib3, uritemplate, pyparsing, pycparser, pyasn1, protobuf, oauthlib, idna, charset_normalizer, certifi, requests, pyasn1-modules, proto-plus, httplib2, googleapis-common-protos, cffi, requests-oauthlib, cryptography, google-auth, google-auth-oauthlib, google-auth-httplib2, google-api-core, gspread, google-api-python-client, gspread-formatting
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:16.6895814Z 
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:16.6916851Z Successfully installed certifi-2026.4.22 cffi-2.0.0 charset_normalizer-3.4.7 cryptography-48.0.0 google-api-core-2.30.3 google-api-python-client-2.196.0 google-auth-2.52.0 google-auth-httplib2-0.4.0 google-auth-oauthlib-1.4.0 googleapis-common-protos-1.75.0 gspread-6.2.1 gspread-formatting-1.2.1 httplib2-0.31.2 idna-3.13 oauthlib-3.3.1 proto-plus-1.28.0 protobuf-7.34.1 pyasn1-0.6.3 pyasn1-modules-0.4.2 pycparser-3.0 pyparsing-3.3.2 requests-2.33.1 requests-oauthlib-2.0.0 uritemplate-4.2.0 urllib3-2.7.0
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:16.6951560Z 
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:16.6952518Z [notice] A new release of pip is available: 26.0.1 -> 26.1.1
+generate-gifs	Install Python Dependencies	2026-05-09T14:06:16.6953612Z [notice] To update, run: pip install --upgrade pip
+generate-gifs	Install FFmpeg	﻿2026-05-09T14:06:16.8960100Z ##[group]Run sudo apt-get update
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8960510Z ^[[36;1msudo apt-get update^[[0m
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8960855Z ^[[36;1msudo apt-get install -yq ffmpeg^[[0m
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8984793Z shell: /usr/bin/bash -e ***0***
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8985142Z env:
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8985490Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8986012Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8986747Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8987238Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8987683Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8988136Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+generate-gifs	Install FFmpeg	2026-05-09T14:06:16.8988550Z ##[endgroup]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.0907847Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.1479600Z Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.1841391Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.1842924Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.1928557Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.1969501Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.2001666Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.2074408Z Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1825 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.3450561Z Get:9 https://packages.microsoft.com/repos/azure-cli noble/main amd64 Packages [2192 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.5080631Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [11.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.5105798Z Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [139 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.5159101Z Get:12 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [112 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.5778688Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1969 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.5928878Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [351 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.5978221Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [177 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6017833Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [17.1 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6037915Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1688 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6225346Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [328 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6300518Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [387 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6340190Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [34.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6383828Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3124 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.6739198Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [721 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7288483Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7307817Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [480 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7327569Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [44.4 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7347606Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [10.4 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7363146Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7372849Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [656 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7375103Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [40.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7387828Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Translation-en [9172 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7397411Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5744 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7417584Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 c-n-f Metadata [368 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7442942Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [30.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7477578Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Translation-en [18.2 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7496732Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.7509359Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 c-n-f Metadata [1484 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8188241Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [212 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8189958Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [748 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8268258Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8349373Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1668 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8572270Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [263 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8591797Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.9 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8662591Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [11.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8677883Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1186 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8742322Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [228 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8797467Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [74.1 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8807297Z Get:47 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [23.1 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.8848658Z Get:48 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2943 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.9220164Z Get:49 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [685 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.9303684Z Get:50 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.9334366Z Get:51 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [28.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.9765427Z Get:52 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [7428 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:17.9792176Z Get:53 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:18.0513061Z Get:54 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1210 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:28.1507593Z Fetched 16.8 MB in 2s (6870 kB/s)
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.0469131Z Reading package lists...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.0826010Z Reading package lists...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.3361730Z Building dependency tree...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.3367331Z Reading state information...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5666367Z The following additional packages will be installed:
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5668324Z   i965-va-driver intel-media-va-driver libaacs0 libass9 libasyncns0
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5669921Z   libavc1394-0 libavcodec60 libavdevice60 libavfilter9 libavformat60
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5671152Z   libavutil58 libbdplus0 libblas3 libbluray2 libbs2b0 libcaca0
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5673062Z   libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64 libchromaprint1 libcjson1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5674323Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdecor-0-0 libdecor-0-plugin-1-gtk
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5694970Z   libflac12t64 libflite1 libgme0 libgsm1 libhwy1t64 libiec61883-0 libigdgmm12
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5696716Z   libjack-jackd2-0 libjxl0.7 liblapack3 liblilv-0-0 libmbedcrypto7t64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5698394Z   libmp3lame0 libmpg123-0t64 libmysofa1 libopenal-data libopenal1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5699821Z   libopenmpt0t64 libopus0 libplacebo338 libpocketsphinx3 libpostproc57
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5701443Z   libpulse0 librav1e0 libraw1394-11 librist4 librsvg2-2 librsvg2-common
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5702869Z   librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5704435Z   libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1 libsphinxbase3t64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5705642Z   libsratom-0-0 libsrt1.5-gnutls libssh-gcrypt-4 libsvtav1enc1d1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5707492Z   libswresample4 libswscale7 libtheora0 libtwolame0 libudfread0 libunibreak5
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5708919Z   libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1 libvorbisenc2 libvpl2
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5710545Z   libvpx9 libx264-164 libx265-199 libxcb-shape0 libxv1 libxvidcore4 libzimg2
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5711812Z   libzix-0-0 libzvbi-common libzvbi0t64 mesa-va-drivers mesa-vdpau-drivers
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5713448Z   ocl-icd-libopencl1 pocketsphinx-en-us va-driver-all vdpau-driver-all
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5714719Z Suggested packages:
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5716231Z   ffmpeg-doc i965-va-driver-shaders libcuda1 libnvcuvid1 libnvidia-encode1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5718205Z   libbluray-bdj jackd2 libportaudio2 opus-tools pulseaudio libraw1394-doc
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.5720330Z   librsvg2-bin serdi sndiod sordi speex opencl-icd libvdpau-va-gl1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6735489Z The following NEW packages will be installed:
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6737670Z   ffmpeg i965-va-driver intel-media-va-driver libaacs0 libass9 libasyncns0
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6739516Z   libavc1394-0 libavcodec60 libavdevice60 libavfilter9 libavformat60
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6740794Z   libavutil58 libbdplus0 libblas3 libbluray2 libbs2b0 libcaca0
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6742392Z   libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64 libchromaprint1 libcjson1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6743845Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdecor-0-0 libdecor-0-plugin-1-gtk
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6745542Z   libflac12t64 libflite1 libgme0 libgsm1 libhwy1t64 libiec61883-0 libigdgmm12
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6747014Z   libjack-jackd2-0 libjxl0.7 liblapack3 liblilv-0-0 libmbedcrypto7t64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6748348Z   libmp3lame0 libmpg123-0t64 libmysofa1 libopenal-data libopenal1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6749515Z   libopenmpt0t64 libopus0 libplacebo338 libpocketsphinx3 libpostproc57
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6750905Z   libpulse0 librav1e0 libraw1394-11 librist4 librsvg2-2 librsvg2-common
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6752114Z   librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6753658Z   libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1 libsphinxbase3t64
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6755078Z   libsratom-0-0 libsrt1.5-gnutls libssh-gcrypt-4 libsvtav1enc1d1
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6756975Z   libswresample4 libswscale7 libtheora0 libtwolame0 libudfread0 libunibreak5
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6758529Z   libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1 libvorbisenc2 libvpl2
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6760283Z   libvpx9 libx264-164 libx265-199 libxcb-shape0 libxv1 libxvidcore4 libzimg2
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6761784Z   libzix-0-0 libzvbi-common libzvbi0t64 mesa-va-drivers mesa-vdpau-drivers
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.6763460Z   ocl-icd-libopencl1 pocketsphinx-en-us va-driver-all vdpau-driver-all
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.7032437Z 0 upgraded, 99 newly installed, 0 to remove and 73 not upgraded.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.7033586Z Need to get 94.1 MB of archives.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.7036108Z After this operation, 227 MB of additional disk space will be used.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.7037770Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.7693648Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva2 amd64 2.20.0-2ubuntu0.1 [66.3 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.8245637Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-drm2 amd64 2.20.0-2ubuntu0.1 [7132 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.8716103Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-x11-2 amd64 2.20.0-2ubuntu0.1 [12.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.9194523Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvdpau1 amd64 1.5-2build1 [27.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:29.9682670Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvpl2 amd64 2023.3.0-1build1 [99.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.0253661Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ocl-icd-libopencl1 amd64 2.3.2-1build1 [38.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.0759471Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavutil58 amd64 7:6.1.1-3ubuntu5 [401 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.1699738Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcodec2-1.2 amd64 1.2.0-2build1 [8998 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.3930438Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdav1d7 amd64 1.4.1-1build1 [604 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.4509310Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgsm1 amd64 1.0.22-1build1 [27.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.5042358Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libhwy1t64 amd64 1.0.7-8.1build1 [584 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.5570871Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libjxl0.7 amd64 0.7.0-10.2ubuntu6.1 [1001 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.6114656Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libmp3lame0 amd64 3.100-6build1 [142 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.6603840Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libopus0 amd64 1.4-1build1 [208 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.7109091Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librav1e0 amd64 0.7.1-2 [1022 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.7647006Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 librsvg2-2 amd64 2.58.0+dfsg-1build1 [2135 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.8451167Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libshine3 amd64 3.1.1-2build1 [23.2 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.8933883Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libspeex1 amd64 1.2.1-2ubuntu2.24.04.1 [59.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:30.9428415Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsvtav1enc1d1 amd64 1.7.0+dfsg-2build1 [2425 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.0288728Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsoxr0 amd64 0.1.3-4build3 [80.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.0773201Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswresample4 amd64 7:6.1.1-3ubuntu5 [63.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.1264696Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtheora0 amd64 1.1.1+dfsg.1-16.1build3 [211 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.1753324Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtwolame0 amd64 0.4.0-2build3 [52.3 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.2232406Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvorbisenc2 amd64 1.3.7-1build3 [80.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.2711194Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libvpx9 amd64 1.14.0-1ubuntu2.3 [1143 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.3404423Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx264-164 amd64 2:0.164.3108+git31e19f9-1 [604 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.3947107Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx265-199 amd64 3.5-2build1 [1226 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.4542752Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libxvidcore4 amd64 2:1.3.7-1build1 [219 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.5051434Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi-common all 0.2.42-2 [42.4 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.5533341Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi0t64 amd64 0.2.42-2 [261 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.6033354Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavcodec60 amd64 7:6.1.1-3ubuntu5 [5851 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.7279260Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libraw1394-11 amd64 2.1.2-2build3 [26.2 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.7757220Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libavc1394-0 amd64 0.5.4-5build3 [15.4 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.8229527Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libunibreak5 amd64 5.1-2build1 [25.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.8704045Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libass9 amd64 1:0.17.1-2build1 [104 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.9187994Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libudfread0 amd64 1.1.2-1build1 [19.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:31.9667951Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbluray2 amd64 1:1.3.4-1build1 [159 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.0166621Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libchromaprint1 amd64 1.5.1-5 [30.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.0650064Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgme0 amd64 0.6.3-7build1 [134 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.1141332Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libmpg123-0t64 amd64 1.32.5-1ubuntu1.1 [169 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.1624833Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenmpt0t64 amd64 0.7.3-1.1build3 [647 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.2274996Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcjson1 amd64 1.7.17-1 [24.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.2754602Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmbedcrypto7t64 amd64 2.28.8-1 [209 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.3252362Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librist4 amd64 0.2.10+dfsg-2 [74.9 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.3740438Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsrt1.5-gnutls amd64 1.5.3-1build2 [316 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.4273814Z Get:47 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-gcrypt-4 amd64 0.10.6-2ubuntu0.4 [225 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.4764469Z Get:48 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavformat60 amd64 7:6.1.1-3ubuntu5 [1153 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.5390219Z Get:49 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbs2b0 amd64 3.1.0+dfsg-7build1 [10.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.5874342Z Get:50 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libflite1 amd64 2.2-6build3 [13.6 MB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.8539245Z Get:51 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libserd-0-0 amd64 0.32.2-1 [43.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.9009327Z Get:52 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzix-0-0 amd64 0.4.2-2build1 [23.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.9486877Z Get:53 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsord-0-0 amd64 0.16.16-2build1 [15.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:32.9970093Z Get:54 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsratom-0-0 amd64 0.6.16-1build1 [17.3 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.0454282Z Get:55 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 liblilv-0-0 amd64 0.24.22-1build1 [41.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.0942147Z Get:56 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmysofa1 amd64 1.3.2+dfsg-2ubuntu2 [1158 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.1548253Z Get:57 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libplacebo338 amd64 6.338.2-2build1 [2654 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.2391950Z Get:58 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libblas3 amd64 3.12.0-3build1.1 [238 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.2913896Z Get:59 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 liblapack3 amd64 3.12.0-3build1.1 [2646 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.4481870Z Get:60 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libasyncns0 amd64 0.8-6build4 [11.3 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.4965626Z Get:61 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libflac12t64 amd64 1.4.3+ds-2.1ubuntu2 [197 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.5452297Z Get:62 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsndfile1 amd64 1.2.2-1ubuntu5.24.04.1 [209 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.5940335Z Get:63 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libpulse0 amd64 1:16.1+dfsg1-2ubuntu10.1 [292 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.6443856Z Get:64 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsphinxbase3t64 amd64 0.8+5prealpha+1-17build2 [126 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.6933431Z Get:65 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpocketsphinx3 amd64 0.8.0+real5prealpha+1-15ubuntu5 [133 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.7419392Z Get:66 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpostproc57 amd64 7:6.1.1-3ubuntu5 [49.9 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.7901808Z Get:67 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libsamplerate0 amd64 0.2.2-4build1 [1344 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.8528777Z Get:68 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librubberband2 amd64 3.3.0+dfsg-2build1 [130 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.9001329Z Get:69 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswscale7 amd64 7:6.1.1-3ubuntu5 [193 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.9493036Z Get:70 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvidstab1.1 amd64 1.1.0-2build1 [38.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:33.9975409Z Get:71 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzimg2 amd64 3.0.5+ds1-1build1 [254 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.0470178Z Get:72 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavfilter9 amd64 7:6.1.1-3ubuntu5 [4235 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.1518435Z Get:73 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcaca0 amd64 0.99.beta20-4ubuntu0.1 [209 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.2012199Z Get:74 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcdio19t64 amd64 2.1.0-4.1ubuntu1.2 [62.4 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.2493805Z Get:75 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdio-cdda2t64 amd64 10.2+2.0.1-1.1build2 [16.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.2979970Z Get:76 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdio-paranoia2t64 amd64 10.2+2.0.1-1.1build2 [16.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.3462960Z Get:77 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdc1394-25 amd64 2.2.6-4build1 [90.1 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.3951877Z Get:78 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libiec61883-0 amd64 1.2.0-6build1 [24.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.4428806Z Get:79 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libjack-jackd2-0 amd64 1.9.21~dfsg-3ubuntu3 [289 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.4927278Z Get:80 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenal-data all 1:1.23.1-4build1 [161 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.5416737Z Get:81 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsndio7.0 amd64 1.9.0-0.3build3 [29.6 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.5894485Z Get:82 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenal1 amd64 1:1.23.1-4build1 [540 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.6407880Z Get:83 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libdecor-0-0 amd64 0.2.2-1build2 [16.5 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.6884838Z Get:84 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsdl2-2.0-0 amd64 2.30.0+dfsg-1ubuntu3.1 [686 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.7408315Z Get:85 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-shape0 amd64 1.15-1ubuntu2 [6100 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.7887904Z Get:86 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxv1 amd64 2:1.0.11-1.1build1 [10.7 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.8367916Z Get:87 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavdevice60 amd64 7:6.1.1-3ubuntu5 [82.3 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.8966949Z Get:88 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ffmpeg amd64 7:6.1.1-3ubuntu5 [1879 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:34.9520691Z Get:89 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libigdgmm12 amd64 22.3.17+ds1-1ubuntu1 [145 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.0012317Z Get:90 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 intel-media-va-driver amd64 24.1.0+dfsg1-1ubuntu0.2 [3163 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.0955664Z Get:91 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libaacs0 amd64 0.11.1-2build1 [62.9 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.1438784Z Get:92 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbdplus0 amd64 0.2.0-3build1 [52.2 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.1924301Z Get:93 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libdecor-0-plugin-1-gtk amd64 0.2.2-1build2 [22.2 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.2408174Z Get:94 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 librsvg2-common amd64 2.58.0+dfsg-1build1 [11.8 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.2893835Z Get:95 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 mesa-va-drivers amd64 25.2.8-0ubuntu0.24.04.1 [6776 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.3372835Z Get:96 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 mesa-vdpau-drivers amd64 25.2.8-0ubuntu0.24.04.1 [23.0 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.3861217Z Get:97 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 i965-va-driver amd64 2.4.1+dfsg1-1ubuntu0.1 [332 kB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.4372296Z Get:98 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 va-driver-all amd64 2.20.0-2ubuntu0.1 [4946 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.4857652Z Get:99 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 vdpau-driver-all amd64 1.5-2build1 [4414 B]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:35.5347518Z Get:100 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 pocketsphinx-en-us all 0.8.0+real5prealpha+1-15ubuntu5 [27.4 MB]
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.3214429Z Fetched 94.1 MB in 6s (15.1 MB/s)
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.3571764Z Selecting previously unselected package libva2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4618771Z (Reading database ... 
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4619585Z (Reading database ... 5%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4620084Z (Reading database ... 10%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4620573Z (Reading database ... 15%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4621068Z (Reading database ... 20%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4621532Z (Reading database ... 25%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4622048Z (Reading database ... 30%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4622526Z (Reading database ... 35%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4622980Z (Reading database ... 40%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4623443Z (Reading database ... 45%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4623908Z (Reading database ... 50%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.4977539Z (Reading database ... 55%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:36.8202141Z (Reading database ... 60%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:37.0670513Z (Reading database ... 65%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:37.3819368Z (Reading database ... 70%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:37.6694368Z (Reading database ... 75%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:38.1319725Z (Reading database ... 80%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:38.7458342Z (Reading database ... 85%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:39.5458098Z (Reading database ... 90%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3257028Z (Reading database ... 95%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3259164Z (Reading database ... 100%
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3260277Z (Reading database ... 220764 files and directories currently installed.)
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3318332Z Preparing to unpack .../00-libva2_2.20.0-2ubuntu0.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3364096Z Unpacking libva2:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3698844Z Selecting previously unselected package libva-drm2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3839702Z Preparing to unpack .../01-libva-drm2_2.20.0-2ubuntu0.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.3856847Z Unpacking libva-drm2:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4138217Z Selecting previously unselected package libva-x11-2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4277669Z Preparing to unpack .../02-libva-x11-2_2.20.0-2ubuntu0.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4289312Z Unpacking libva-x11-2:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4528783Z Selecting previously unselected package libvdpau1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4675887Z Preparing to unpack .../03-libvdpau1_1.5-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4686365Z Unpacking libvdpau1:amd64 (1.5-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.4948479Z Selecting previously unselected package libvpl2.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.5109196Z Preparing to unpack .../04-libvpl2_2023.3.0-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:40.5142517Z Unpacking libvpl2 (2023.3.0-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.2238976Z Selecting previously unselected package ocl-icd-libopencl1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.2371228Z Preparing to unpack .../05-ocl-icd-libopencl1_2.3.2-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.2379740Z Unpacking ocl-icd-libopencl1:amd64 (2.3.2-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.2808650Z Selecting previously unselected package libavutil58:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.2941199Z Preparing to unpack .../06-libavutil58_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.2949532Z Unpacking libavutil58:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.3248593Z Selecting previously unselected package libcodec2-1.2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.3383439Z Preparing to unpack .../07-libcodec2-1.2_1.2.0-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.3393266Z Unpacking libcodec2-1.2:amd64 (1.2.0-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.4203784Z Selecting previously unselected package libdav1d7:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.4354676Z Preparing to unpack .../08-libdav1d7_1.4.1-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.4362662Z Unpacking libdav1d7:amd64 (1.4.1-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.4659406Z Selecting previously unselected package libgsm1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.4810482Z Preparing to unpack .../09-libgsm1_1.0.22-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.4818550Z Unpacking libgsm1:amd64 (1.0.22-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.5050511Z Selecting previously unselected package libhwy1t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.5201295Z Preparing to unpack .../10-libhwy1t64_1.0.7-8.1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.5210146Z Unpacking libhwy1t64:amd64 (1.0.7-8.1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.5562348Z Selecting previously unselected package libjxl0.7:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.5712612Z Preparing to unpack .../11-libjxl0.7_0.7.0-10.2ubuntu6.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.5722040Z Unpacking libjxl0.7:amd64 (0.7.0-10.2ubuntu6.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6108588Z Selecting previously unselected package libmp3lame0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6247181Z Preparing to unpack .../12-libmp3lame0_3.100-6build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6255083Z Unpacking libmp3lame0:amd64 (3.100-6build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6500734Z Selecting previously unselected package libopus0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6651935Z Preparing to unpack .../13-libopus0_1.4-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6659019Z Unpacking libopus0:amd64 (1.4-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.6901640Z Selecting previously unselected package librav1e0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.7050383Z Preparing to unpack .../14-librav1e0_0.7.1-2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.7057506Z Unpacking librav1e0:amd64 (0.7.1-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.7420333Z Selecting previously unselected package librsvg2-2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.7569026Z Preparing to unpack .../15-librsvg2-2_2.58.0+dfsg-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.7577604Z Unpacking librsvg2-2:amd64 (2.58.0+dfsg-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8090736Z Selecting previously unselected package libshine3:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8244229Z Preparing to unpack .../16-libshine3_3.1.1-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8252904Z Unpacking libshine3:amd64 (3.1.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8479430Z Selecting previously unselected package libspeex1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8631901Z Preparing to unpack .../17-libspeex1_1.2.1-2ubuntu2.24.04.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8647907Z Unpacking libspeex1:amd64 (1.2.1-2ubuntu2.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.8888101Z Selecting previously unselected package libsvtav1enc1d1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.9028783Z Preparing to unpack .../18-libsvtav1enc1d1_1.7.0+dfsg-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.9043271Z Unpacking libsvtav1enc1d1:amd64 (1.7.0+dfsg-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.9588222Z Selecting previously unselected package libsoxr0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.9728217Z Preparing to unpack .../19-libsoxr0_0.1.3-4build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.9737646Z Unpacking libsoxr0:amd64 (0.1.3-4build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:41.9975285Z Selecting previously unselected package libswresample4:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0127997Z Preparing to unpack .../20-libswresample4_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0137143Z Unpacking libswresample4:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0388345Z Selecting previously unselected package libtheora0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0532666Z Preparing to unpack .../21-libtheora0_1.1.1+dfsg.1-16.1build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0539631Z Unpacking libtheora0:amd64 (1.1.1+dfsg.1-16.1build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0813966Z Selecting previously unselected package libtwolame0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0975313Z Preparing to unpack .../22-libtwolame0_0.4.0-2build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.0984249Z Unpacking libtwolame0:amd64 (0.4.0-2build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.1224417Z Selecting previously unselected package libvorbisenc2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.1380050Z Preparing to unpack .../23-libvorbisenc2_1.3.7-1build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.1388234Z Unpacking libvorbisenc2:amd64 (1.3.7-1build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.1643534Z Selecting previously unselected package libvpx9:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.1795262Z Preparing to unpack .../24-libvpx9_1.14.0-1ubuntu2.3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.1806215Z Unpacking libvpx9:amd64 (1.14.0-1ubuntu2.3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.2186048Z Selecting previously unselected package libx264-164:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.2337499Z Preparing to unpack .../25-libx264-164_2%3a0.164.3108+git31e19f9-1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.2351763Z Unpacking libx264-164:amd64 (2:0.164.3108+git31e19f9-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.2678407Z Selecting previously unselected package libx265-199:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.2827920Z Preparing to unpack .../26-libx265-199_3.5-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.2837249Z Unpacking libx265-199:amd64 (3.5-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.3577098Z Selecting previously unselected package libxvidcore4:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.3729110Z Preparing to unpack .../27-libxvidcore4_2%3a1.3.7-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.3738414Z Unpacking libxvidcore4:amd64 (2:1.3.7-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.3989165Z Selecting previously unselected package libzvbi-common.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.4145251Z Preparing to unpack .../28-libzvbi-common_0.2.42-2_all.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.4151388Z Unpacking libzvbi-common (0.2.42-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.4696210Z Selecting previously unselected package libzvbi0t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.4846936Z Preparing to unpack .../29-libzvbi0t64_0.2.42-2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.4855334Z Unpacking libzvbi0t64:amd64 (0.2.42-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.5128232Z Selecting previously unselected package libavcodec60:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.5281209Z Preparing to unpack .../30-libavcodec60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.5296242Z Unpacking libavcodec60:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6220388Z Selecting previously unselected package libraw1394-11:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6371189Z Preparing to unpack .../31-libraw1394-11_2.1.2-2build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6378681Z Unpacking libraw1394-11:amd64 (2.1.2-2build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6608032Z Selecting previously unselected package libavc1394-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6755730Z Preparing to unpack .../32-libavc1394-0_0.5.4-5build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6770130Z Unpacking libavc1394-0:amd64 (0.5.4-5build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.6998210Z Selecting previously unselected package libunibreak5:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7134462Z Preparing to unpack .../33-libunibreak5_5.1-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7142977Z Unpacking libunibreak5:amd64 (5.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7379425Z Selecting previously unselected package libass9:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7531244Z Preparing to unpack .../34-libass9_1%3a0.17.1-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7540601Z Unpacking libass9:amd64 (1:0.17.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7785667Z Selecting previously unselected package libudfread0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7937087Z Preparing to unpack .../35-libudfread0_1.1.2-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.7946834Z Unpacking libudfread0:amd64 (1.1.2-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8175600Z Selecting previously unselected package libbluray2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8325986Z Preparing to unpack .../36-libbluray2_1%3a1.3.4-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8334957Z Unpacking libbluray2:amd64 (1:1.3.4-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8598543Z Selecting previously unselected package libchromaprint1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8728848Z Preparing to unpack .../37-libchromaprint1_1.5.1-5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8736364Z Unpacking libchromaprint1:amd64 (1.5.1-5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.8964245Z Selecting previously unselected package libgme0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9114748Z Preparing to unpack .../38-libgme0_0.6.3-7build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9123183Z Unpacking libgme0:amd64 (0.6.3-7build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9378447Z Selecting previously unselected package libmpg123-0t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9520504Z Preparing to unpack .../39-libmpg123-0t64_1.32.5-1ubuntu1.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9529280Z Unpacking libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9791270Z Selecting previously unselected package libopenmpt0t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9943581Z Preparing to unpack .../40-libopenmpt0t64_0.7.3-1.1build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:42.9951370Z Unpacking libopenmpt0t64:amd64 (0.7.3-1.1build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.0264682Z Selecting previously unselected package libcjson1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.0415487Z Preparing to unpack .../41-libcjson1_1.7.17-1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.0424145Z Unpacking libcjson1:amd64 (1.7.17-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.0665041Z Selecting previously unselected package libmbedcrypto7t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.0819149Z Preparing to unpack .../42-libmbedcrypto7t64_2.28.8-1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.0827941Z Unpacking libmbedcrypto7t64:amd64 (2.28.8-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1087628Z Selecting previously unselected package librist4:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1239540Z Preparing to unpack .../43-librist4_0.2.10+dfsg-2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1247895Z Unpacking librist4:amd64 (0.2.10+dfsg-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1486255Z Selecting previously unselected package libsrt1.5-gnutls:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1638924Z Preparing to unpack .../44-libsrt1.5-gnutls_1.5.3-1build2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1648211Z Unpacking libsrt1.5-gnutls:amd64 (1.5.3-1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.1925390Z Selecting previously unselected package libssh-gcrypt-4:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.2077462Z Preparing to unpack .../45-libssh-gcrypt-4_0.10.6-2ubuntu0.4_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.2089364Z Unpacking libssh-gcrypt-4:amd64 (0.10.6-2ubuntu0.4) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.2358355Z Selecting previously unselected package libavformat60:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.2501591Z Preparing to unpack .../46-libavformat60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.2508619Z Unpacking libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.2867657Z Selecting previously unselected package libbs2b0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.3018925Z Preparing to unpack .../47-libbs2b0_3.1.0+dfsg-7build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.3031681Z Unpacking libbs2b0:amd64 (3.1.0+dfsg-7build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.3286848Z Selecting previously unselected package libflite1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.3442764Z Preparing to unpack .../48-libflite1_2.2-6build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.3458272Z Unpacking libflite1:amd64 (2.2-6build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.4728461Z Selecting previously unselected package libserd-0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.4857844Z Preparing to unpack .../49-libserd-0-0_0.32.2-1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.4867284Z Unpacking libserd-0-0:amd64 (0.32.2-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.5108296Z Selecting previously unselected package libzix-0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.5244846Z Preparing to unpack .../50-libzix-0-0_0.4.2-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.5252158Z Unpacking libzix-0-0:amd64 (0.4.2-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.5475532Z Selecting previously unselected package libsord-0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.5625258Z Preparing to unpack .../51-libsord-0-0_0.16.16-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.5633811Z Unpacking libsord-0-0:amd64 (0.16.16-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6057254Z Selecting previously unselected package libsratom-0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6210175Z Preparing to unpack .../52-libsratom-0-0_0.6.16-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6218619Z Unpacking libsratom-0-0:amd64 (0.6.16-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6468348Z Selecting previously unselected package liblilv-0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6618082Z Preparing to unpack .../53-liblilv-0-0_0.24.22-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6625508Z Unpacking liblilv-0-0:amd64 (0.24.22-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.6853139Z Selecting previously unselected package libmysofa1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.7003376Z Preparing to unpack .../54-libmysofa1_1.3.2+dfsg-2ubuntu2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.7010587Z Unpacking libmysofa1:amd64 (1.3.2+dfsg-2ubuntu2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.7287982Z Selecting previously unselected package libplacebo338:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.7438277Z Preparing to unpack .../55-libplacebo338_6.338.2-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.7447424Z Unpacking libplacebo338:amd64 (6.338.2-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.8058408Z Selecting previously unselected package libblas3:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.8206274Z Preparing to unpack .../56-libblas3_3.12.0-3build1.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.8242272Z Unpacking libblas3:amd64 (3.12.0-3build1.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.8528046Z Selecting previously unselected package liblapack3:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.8667663Z Preparing to unpack .../57-liblapack3_3.12.0-3build1.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.8708157Z Unpacking liblapack3:amd64 (3.12.0-3build1.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.9258072Z Selecting previously unselected package libasyncns0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.9398175Z Preparing to unpack .../58-libasyncns0_0.8-6build4_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.9405945Z Unpacking libasyncns0:amd64 (0.8-6build4) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.9637946Z Selecting previously unselected package libflac12t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.9777141Z Preparing to unpack .../59-libflac12t64_1.4.3+ds-2.1ubuntu2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:43.9783757Z Unpacking libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.0036997Z Selecting previously unselected package libsndfile1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.0188373Z Preparing to unpack .../60-libsndfile1_1.2.2-1ubuntu5.24.04.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.0194736Z Unpacking libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.0613826Z Selecting previously unselected package libpulse0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.0775549Z Preparing to unpack .../61-libpulse0_1%3a16.1+dfsg1-2ubuntu10.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.0911266Z Unpacking libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.1194730Z Selecting previously unselected package libsphinxbase3t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.1538117Z Preparing to unpack .../62-libsphinxbase3t64_0.8+5prealpha+1-17build2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.1573177Z Unpacking libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.1818996Z Selecting previously unselected package libpocketsphinx3:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.1978543Z Preparing to unpack .../63-libpocketsphinx3_0.8.0+real5prealpha+1-15ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.1986976Z Unpacking libpocketsphinx3:amd64 (0.8.0+real5prealpha+1-15ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.2258859Z Selecting previously unselected package libpostproc57:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.2405693Z Preparing to unpack .../64-libpostproc57_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.2414123Z Unpacking libpostproc57:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.2660157Z Selecting previously unselected package libsamplerate0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.2819943Z Preparing to unpack .../65-libsamplerate0_0.2.2-4build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.2835043Z Unpacking libsamplerate0:amd64 (0.2.2-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.3132116Z Selecting previously unselected package librubberband2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.3291151Z Preparing to unpack .../66-librubberband2_3.3.0+dfsg-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.3299713Z Unpacking librubberband2:amd64 (3.3.0+dfsg-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.3618172Z Selecting previously unselected package libswscale7:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.3763319Z Preparing to unpack .../67-libswscale7_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.3770392Z Unpacking libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4036302Z Selecting previously unselected package libvidstab1.1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4195120Z Preparing to unpack .../68-libvidstab1.1_1.1.0-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4203441Z Unpacking libvidstab1.1:amd64 (1.1.0-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4431652Z Selecting previously unselected package libzimg2:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4582591Z Preparing to unpack .../69-libzimg2_3.0.5+ds1-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4592453Z Unpacking libzimg2:amd64 (3.0.5+ds1-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.4868389Z Selecting previously unselected package libavfilter9:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.5010974Z Preparing to unpack .../70-libavfilter9_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.5020615Z Unpacking libavfilter9:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.5827949Z Selecting previously unselected package libcaca0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.5971622Z Preparing to unpack .../71-libcaca0_0.99.beta20-4ubuntu0.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.5987682Z Unpacking libcaca0:amd64 (0.99.beta20-4ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.6262511Z Selecting previously unselected package libcdio19t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.6413933Z Preparing to unpack .../72-libcdio19t64_2.1.0-4.1ubuntu1.2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.6424004Z Unpacking libcdio19t64:amd64 (2.1.0-4.1ubuntu1.2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.6662221Z Selecting previously unselected package libcdio-cdda2t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.6813899Z Preparing to unpack .../73-libcdio-cdda2t64_10.2+2.0.1-1.1build2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.6837953Z Unpacking libcdio-cdda2t64:amd64 (10.2+2.0.1-1.1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7055026Z Selecting previously unselected package libcdio-paranoia2t64:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7206399Z Preparing to unpack .../74-libcdio-paranoia2t64_10.2+2.0.1-1.1build2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7215913Z Unpacking libcdio-paranoia2t64:amd64 (10.2+2.0.1-1.1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7458458Z Selecting previously unselected package libdc1394-25:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7605799Z Preparing to unpack .../75-libdc1394-25_2.2.6-4build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7615788Z Unpacking libdc1394-25:amd64 (2.2.6-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.7859786Z Selecting previously unselected package libiec61883-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8012151Z Preparing to unpack .../76-libiec61883-0_1.2.0-6build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8022223Z Unpacking libiec61883-0:amd64 (1.2.0-6build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8268589Z Selecting previously unselected package libjack-jackd2-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8412779Z Preparing to unpack .../77-libjack-jackd2-0_1.9.21~dfsg-3ubuntu3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8422394Z Unpacking libjack-jackd2-0:amd64 (1.9.21~dfsg-3ubuntu3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8718306Z Selecting previously unselected package libopenal-data.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8860952Z Preparing to unpack .../78-libopenal-data_1%3a1.23.1-4build1_all.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.8876388Z Unpacking libopenal-data (1:1.23.1-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.9132306Z Selecting previously unselected package libsndio7.0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.9287824Z Preparing to unpack .../79-libsndio7.0_1.9.0-0.3build3_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.9297814Z Unpacking libsndio7.0:amd64 (1.9.0-0.3build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.9539985Z Selecting previously unselected package libopenal1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.9691722Z Preparing to unpack .../80-libopenal1_1%3a1.23.1-4build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:44.9701415Z Unpacking libopenal1:amd64 (1:1.23.1-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.0002573Z Selecting previously unselected package libdecor-0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.0154910Z Preparing to unpack .../81-libdecor-0-0_0.2.2-1build2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.0167915Z Unpacking libdecor-0-0:amd64 (0.2.2-1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.0398285Z Selecting previously unselected package libsdl2-2.0-0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.0550130Z Preparing to unpack .../82-libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.0558745Z Unpacking libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1027027Z Selecting previously unselected package libxcb-shape0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1179057Z Preparing to unpack .../83-libxcb-shape0_1.15-1ubuntu2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1187787Z Unpacking libxcb-shape0:amd64 (1.15-1ubuntu2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1420878Z Selecting previously unselected package libxv1:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1573183Z Preparing to unpack .../84-libxv1_2%3a1.0.11-1.1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1582495Z Unpacking libxv1:amd64 (2:1.0.11-1.1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1806217Z Selecting previously unselected package libavdevice60:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1958007Z Preparing to unpack .../85-libavdevice60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.1965156Z Unpacking libavdevice60:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.2190559Z Selecting previously unselected package ffmpeg.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.2341226Z Preparing to unpack .../86-ffmpeg_7%3a6.1.1-3ubuntu5_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.2354558Z Unpacking ffmpeg (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.3100600Z Selecting previously unselected package libigdgmm12:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.3251334Z Preparing to unpack .../87-libigdgmm12_22.3.17+ds1-1ubuntu1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.3259310Z Unpacking libigdgmm12:amd64 (22.3.17+ds1-1ubuntu1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.3502164Z Selecting previously unselected package intel-media-va-driver:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.3653941Z Preparing to unpack .../88-intel-media-va-driver_24.1.0+dfsg1-1ubuntu0.2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.3661192Z Unpacking intel-media-va-driver:amd64 (24.1.0+dfsg1-1ubuntu0.2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.4446230Z Selecting previously unselected package libaacs0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.4596211Z Preparing to unpack .../89-libaacs0_0.11.1-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.4605361Z Unpacking libaacs0:amd64 (0.11.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.4857859Z Selecting previously unselected package libbdplus0:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5001263Z Preparing to unpack .../90-libbdplus0_0.2.0-3build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5007849Z Unpacking libbdplus0:amd64 (0.2.0-3build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5231494Z Selecting previously unselected package libdecor-0-plugin-1-gtk:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5385324Z Preparing to unpack .../91-libdecor-0-plugin-1-gtk_0.2.2-1build2_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5392092Z Unpacking libdecor-0-plugin-1-gtk:amd64 (0.2.2-1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5616404Z Selecting previously unselected package librsvg2-common:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5766054Z Preparing to unpack .../92-librsvg2-common_2.58.0+dfsg-1build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.5775671Z Unpacking librsvg2-common:amd64 (2.58.0+dfsg-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6087916Z Selecting previously unselected package mesa-va-drivers:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6221884Z Preparing to unpack .../93-mesa-va-drivers_25.2.8-0ubuntu0.24.04.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6229188Z Unpacking mesa-va-drivers:amd64 (25.2.8-0ubuntu0.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6448079Z Selecting previously unselected package mesa-vdpau-drivers:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6600538Z Preparing to unpack .../94-mesa-vdpau-drivers_25.2.8-0ubuntu0.24.04.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6608919Z Unpacking mesa-vdpau-drivers:amd64 (25.2.8-0ubuntu0.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6841686Z Selecting previously unselected package i965-va-driver:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.6995063Z Preparing to unpack .../95-i965-va-driver_2.4.1+dfsg1-1ubuntu0.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7003779Z Unpacking i965-va-driver:amd64 (2.4.1+dfsg1-1ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7293893Z Selecting previously unselected package va-driver-all:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7445772Z Preparing to unpack .../96-va-driver-all_2.20.0-2ubuntu0.1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7453289Z Unpacking va-driver-all:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7678445Z Selecting previously unselected package vdpau-driver-all:amd64.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7819413Z Preparing to unpack .../97-vdpau-driver-all_1.5-2build1_amd64.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.7827972Z Unpacking vdpau-driver-all:amd64 (1.5-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.8044902Z Selecting previously unselected package pocketsphinx-en-us.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.8198016Z Preparing to unpack .../98-pocketsphinx-en-us_0.8.0+real5prealpha+1-15ubuntu5_all.deb ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:45.8206992Z Unpacking pocketsphinx-en-us (0.8.0+real5prealpha+1-15ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0377297Z Setting up libgme0:amd64 (0.6.3-7build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0403179Z Setting up libchromaprint1:amd64 (1.5.1-5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0420821Z Setting up libssh-gcrypt-4:amd64 (0.10.6-2ubuntu0.4) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0439602Z Setting up libhwy1t64:amd64 (1.0.7-8.1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0459452Z Setting up libudfread0:amd64 (1.1.2-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0478425Z Setting up libraw1394-11:amd64 (2.1.2-2build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0497718Z Setting up libspeex1:amd64 (1.2.1-2ubuntu2.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0516855Z Setting up libshine3:amd64 (3.1.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0542213Z Setting up libcaca0:amd64 (0.99.beta20-4ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0562447Z Setting up libvpl2 (2023.3.0-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0582113Z Setting up libx264-164:amd64 (2:0.164.3108+git31e19f9-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0601328Z Setting up libtwolame0:amd64 (0.4.0-2build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0621388Z Setting up libmbedcrypto7t64:amd64 (2.28.8-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0640106Z Setting up libgsm1:amd64 (1.0.22-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0659386Z Setting up libsoxr0:amd64 (0.1.3-4build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0678641Z Setting up libzix-0-0:amd64 (0.4.2-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0697331Z Setting up libcodec2-1.2:amd64 (1.2.0-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0714224Z Setting up libmysofa1:amd64 (1.3.2+dfsg-2ubuntu2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0731955Z Setting up libxcb-shape0:amd64 (1.15-1ubuntu2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0749919Z Setting up libcdio19t64:amd64 (2.1.0-4.1ubuntu1.2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0768364Z Setting up libsvtav1enc1d1:amd64 (1.7.0+dfsg-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0786145Z Setting up libigdgmm12:amd64 (22.3.17+ds1-1ubuntu1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0805797Z Setting up libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0824272Z Setting up libcjson1:amd64 (1.7.17-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0849704Z Setting up libxvidcore4:amd64 (2:1.3.7-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0869495Z Setting up librav1e0:amd64 (0.7.1-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0889414Z Setting up libcdio-cdda2t64:amd64 (10.2+2.0.1-1.1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0907861Z Setting up librist4:amd64 (0.2.10+dfsg-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0927456Z Setting up librsvg2-2:amd64 (2.58.0+dfsg-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.0946156Z Setting up libblas3:amd64 (3.12.0-3build1.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1011892Z update-alternatives: using /usr/lib/x86_64-linux-gnu/blas/libblas.so.3 to provide /usr/lib/x86_64-linux-gnu/libblas.so.3 (libblas.so.3-x86_64-linux-gnu) in auto mode
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1028457Z Setting up libplacebo338:amd64 (6.338.2-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1049460Z Setting up libva2:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1068851Z Setting up libopus0:amd64 (1.4-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1088168Z Setting up libcdio-paranoia2t64:amd64 (10.2+2.0.1-1.1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1106637Z Setting up libdc1394-25:amd64 (2.2.6-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1123881Z Setting up intel-media-va-driver:amd64 (24.1.0+dfsg1-1ubuntu0.2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1141612Z Setting up libxv1:amd64 (2:1.0.11-1.1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1159312Z Setting up libunibreak5:amd64 (5.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1176764Z Setting up libaacs0:amd64 (0.11.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1196975Z Setting up libjxl0.7:amd64 (0.7.0-10.2ubuntu6.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1215178Z Setting up librsvg2-common:amd64 (2.58.0+dfsg-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1363779Z Setting up pocketsphinx-en-us (0.8.0+real5prealpha+1-15ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1382525Z Setting up libx265-199:amd64 (3.5-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1404181Z Setting up libsndio7.0:amd64 (1.9.0-0.3build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1422715Z Setting up libbdplus0:amd64 (0.2.0-3build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1442037Z Setting up libvidstab1.1:amd64 (1.1.0-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1461373Z Setting up libvpx9:amd64 (1.14.0-1ubuntu2.3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1485658Z Setting up libsrt1.5-gnutls:amd64 (1.5.3-1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1505028Z Setting up libflite1:amd64 (2.2-6build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1523855Z Setting up libdav1d7:amd64 (1.4.1-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1542830Z Setting up libva-drm2:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1562132Z Setting up ocl-icd-libopencl1:amd64 (2.3.2-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1581036Z Setting up libasyncns0:amd64 (0.8-6build4) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1600591Z Setting up libvdpau1:amd64 (1.5-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1625499Z Setting up libbs2b0:amd64 (3.1.0+dfsg-7build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1645310Z Setting up libtheora0:amd64 (1.1.1+dfsg.1-16.1build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1662922Z Setting up libdecor-0-0:amd64 (0.2.2-1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1682154Z Setting up libzimg2:amd64 (3.0.5+ds1-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1701942Z Setting up libopenal-data (1:1.23.1-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1727156Z Setting up libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1746315Z Setting up mesa-va-drivers:amd64 (25.2.8-0ubuntu0.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1766179Z Setting up libbluray2:amd64 (1:1.3.4-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1785770Z Setting up libsamplerate0:amd64 (0.2.2-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1807538Z Setting up libva-x11-2:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1827546Z Setting up libdecor-0-plugin-1-gtk:amd64 (0.2.2-1build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1846958Z Setting up libopenmpt0t64:amd64 (0.7.3-1.1build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1864261Z Setting up libzvbi-common (0.2.42-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1882784Z Setting up libmp3lame0:amd64 (3.100-6build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1903527Z Setting up i965-va-driver:amd64 (2.4.1+dfsg1-1ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1924688Z Setting up libvorbisenc2:amd64 (1.3.7-1build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1954704Z Setting up libiec61883-0:amd64 (1.2.0-6build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1976060Z Setting up libserd-0-0:amd64 (0.32.2-1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.1995343Z Setting up libavc1394-0:amd64 (0.5.4-5build3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2015535Z Setting up mesa-vdpau-drivers:amd64 (25.2.8-0ubuntu0.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2035847Z Setting up liblapack3:amd64 (3.12.0-3build1.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2101416Z update-alternatives: using /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3 to provide /usr/lib/x86_64-linux-gnu/liblapack.so.3 (liblapack.so.3-x86_64-linux-gnu) in auto mode
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2117387Z Setting up libzvbi0t64:amd64 (0.2.42-2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2137289Z Setting up libavutil58:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2156995Z Setting up libopenal1:amd64 (1:1.23.1-4build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2175944Z Setting up libass9:amd64 (1:0.17.1-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2195396Z Setting up libswresample4:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2214785Z Setting up va-driver-all:amd64 (2.20.0-2ubuntu0.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2234921Z Setting up libavcodec60:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2253687Z Setting up librubberband2:amd64 (3.3.0+dfsg-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2385331Z Setting up libjack-jackd2-0:amd64 (1.9.21~dfsg-3ubuntu3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2404922Z Setting up vdpau-driver-all:amd64 (1.5-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2426785Z Setting up libsord-0-0:amd64 (0.16.16-2build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2445653Z Setting up libpostproc57:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2465014Z Setting up libsratom-0-0:amd64 (0.6.16-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2484515Z Setting up libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2505987Z Setting up liblilv-0-0:amd64 (0.24.22-1build1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2524189Z Setting up libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2545049Z Setting up libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2620838Z Setting up libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2639035Z Setting up libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2659649Z Setting up libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2679295Z Setting up libpocketsphinx3:amd64 (0.8.0+real5prealpha+1-15ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2697572Z Setting up libavfilter9:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2716096Z Setting up libavdevice60:amd64 (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2737491Z Setting up ffmpeg (7:6.1.1-3ubuntu5) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2762530Z Processing triggers for man-db (2.12.0-4build2) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2787034Z Not building database; man-db/auto-update is not 'true'.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.2801718Z Processing triggers for libgdk-pixbuf-2.0-0:amd64 (2.42.10+dfsg-3ubuntu3.3) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:46.6350747Z Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0651860Z 
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0652897Z Running kernel seems to be up-to-date.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0653989Z 
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0654447Z No services need to be restarted.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0655063Z 
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0655478Z No containers need to be restarted.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0656000Z 
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0656848Z No user sessions are running outdated binaries.
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0657352Z 
+generate-gifs	Install FFmpeg	2026-05-09T14:06:48.0658017Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+generate-gifs	Run Daily Batch Script	﻿2026-05-09T14:06:49.1959377Z ##[group]Run python daily_batch.py
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1959802Z ^[[36;1mpython daily_batch.py^[[0m
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1984869Z shell: /usr/bin/bash -e ***0***
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1985222Z env:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1985566Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1986079Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1986836Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1987356Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1987822Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1988264Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1997845Z   GOOGLE_CREDENTIALS: ***
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1998231Z   PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:49.1998614Z ##[endgroup]
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.1609085Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.1610296Z > chinese-stroke-order-generator@1.0.0 generate
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.1612065Z > node generate.js 爱
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.1612720Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.3621887Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.3623277Z [1/1] 开始生成汉字 "爱" 的GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.3630475Z 开始生成汉字 "爱" 的笔顺动画GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:06:53.3665970Z 使用浏览器: /usr/bin/google-chrome
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:00.8743205Z 开始录制动画帧...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:01.4288895Z 检测到动画开始
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:02.4975011Z 已录制 10/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:03.5475899Z 已录制 20/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:04.5825779Z 已录制 30/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:05.6152949Z 已录制 40/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:06.6827306Z 已录制 50/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:07.7973355Z 已录制 60/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:08.8658889Z 已录制 70/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:09.9332359Z 已录制 80/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:11.0338513Z 已录制 90/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:12.1501285Z 已录制 100/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:13.2658656Z 已录制 110/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:14.2823958Z 已录制 120/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:15.2994046Z 已录制 130/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:16.3490247Z 已录制 140/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.3825898Z 已录制 150/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.3827269Z 开始生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8284329Z 使用FFmpeg生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8788538Z ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8789715Z   built with gcc 13 (Ubuntu 13.2.0-23ubuntu3)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8800157Z   configuration: --prefix=/usr --extra-version=3ubuntu5 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --disable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8811579Z   libavutil      58. 29.100 / 58. 29.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8812383Z   libavcodec     60. 31.102 / 60. 31.102
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8813129Z   libavformat    60. 16.100 / 60. 16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8813856Z   libavdevice    60.  3.100 / 60.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8814578Z   libavfilter     9. 12.100 /  9. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8815299Z   libswscale      7.  5.100 /  7.  5.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8816571Z   libswresample   4. 12.100 /  4. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8817323Z   libpostproc    57.  3.100 / 57.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8839961Z Input #0, image2, from 'temp/爱/frame%04d.png':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8840886Z   Duration: 00:00:10.00, start: 0.000000, bitrate: N/A
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8842003Z   Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown), 540x540, 15 fps, 15 tbr, 15 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8855550Z Stream mapping:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8857235Z   Stream #0:0 -> #0:0 (png (native) -> gif (native))
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:17.8858239Z Press [q] to stop, [?] for help
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3421433Z [Parsed_palettegen_2 @ 0x5592010906c0] 255(+1) colors generated out of 464 colors; ratio=0.549569
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3422893Z [Parsed_palettegen_2 @ 0x5592010906c0] Duped color: FF90BDD8
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3423887Z [Parsed_palettegen_2 @ 0x5592010906c0] Duped color: FFA698AE
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3578183Z Output #0, gif, to 'output/爱.gif':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3578833Z   Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3579402Z     encoder         : Lavf60.16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3580520Z   Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 540x540, q=2-31, 200 kb/s, 15 fps, 100 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3581536Z     Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.3582116Z       encoder         : Lavc60.31.102 gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:18.8649262Z frame=    0 fps=0.0 q=-0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.3701310Z frame=   74 fps=0.0 q=-0.0 size=      18kB time=00:00:04.93 bitrate=  29.3kbits/s speed=5.07x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.3771425Z frame=  148 fps=100 q=-0.0 size=      28kB time=00:00:09.86 bitrate=  23.4kbits/s speed=6.68x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.3773194Z [out#0/gif @ 0x55920108e140] video:28kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.068987%
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.3776196Z frame=  150 fps=101 q=-0.0 Lsize=      28kB time=00:00:09.93 bitrate=  23.4kbits/s speed=6.66x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.3956840Z ✓ GIF生成完成: output/爱.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.4668877Z 浏览器连接已断开
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5223371Z ✓ [1/1] 成功！GIF文件已保存到: output/爱.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5224107Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5224520Z ========== 生成完成 ==========
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5225119Z 总耗时: 0.44 分钟
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5225612Z 成功: 1 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5226096Z 跳过: 0 个 (文件已存在)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:19.5227321Z 失败: 0 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:22.9056981Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:22.9058158Z > chinese-stroke-order-generator@1.0.0 generate
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:22.9059518Z > node generate.js 夏
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:22.9060206Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:23.1052982Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:23.1054389Z [1/1] 开始生成汉字 "夏" 的GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:23.1061632Z 开始生成汉字 "夏" 的笔顺动画GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:23.1097943Z 使用浏览器: /usr/bin/google-chrome
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:24.9168030Z 开始录制动画帧...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:25.4726287Z 检测到动画开始
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:26.5799131Z 已录制 10/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:27.5961459Z 已录制 20/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:28.6988832Z 已录制 30/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:29.8984132Z 已录制 40/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:30.9965636Z 已录制 50/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:32.0303791Z 已录制 60/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:33.0818972Z 已录制 70/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:34.1320631Z 已录制 80/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:35.1825167Z 已录制 90/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:36.2819442Z 已录制 100/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:37.4373746Z 已录制 110/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:38.4481488Z 已录制 120/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:39.4813931Z 已录制 130/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:40.4979514Z 已录制 140/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.5146016Z 已录制 150/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.5147263Z 开始生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.5690179Z 使用FFmpeg生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6190976Z ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6191926Z   built with gcc 13 (Ubuntu 13.2.0-23ubuntu3)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6201993Z   configuration: --prefix=/usr --extra-version=3ubuntu5 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --disable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6212883Z   libavutil      58. 29.100 / 58. 29.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6213482Z   libavcodec     60. 31.102 / 60. 31.102
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6214058Z   libavformat    60. 16.100 / 60. 16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6214595Z   libavdevice    60.  3.100 / 60.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6215126Z   libavfilter     9. 12.100 /  9. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6215664Z   libswscale      7.  5.100 /  7.  5.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6216218Z   libswresample   4. 12.100 /  4. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6216947Z   libpostproc    57.  3.100 / 57.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6239347Z Input #0, image2, from 'temp/夏/frame%04d.png':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6240279Z   Duration: 00:00:10.00, start: 0.000000, bitrate: N/A
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6241382Z   Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown), 540x540, 15 fps, 15 tbr, 15 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6254116Z Stream mapping:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6254945Z   Stream #0:0 -> #0:0 (png (native) -> gif (native))
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:41.6255742Z Press [q] to stop, [?] for help
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0811816Z [Parsed_palettegen_2 @ 0x558591f306c0] 234(+1) colors generated out of 234 colors; ratio=1.000000
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0957317Z Output #0, gif, to 'output/夏.gif':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0962585Z   Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0963486Z     encoder         : Lavf60.16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0964860Z   Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 540x540, q=2-31, 200 kb/s, 15 fps, 100 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0966043Z     Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.0966938Z       encoder         : Lavc60.31.102 gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:42.6031429Z frame=    0 fps=0.0 q=-0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.1060796Z frame=   74 fps=0.0 q=-0.0 size=      18kB time=00:00:04.93 bitrate=  30.0kbits/s speed=5.08x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.1335006Z frame=  145 fps= 98 q=-0.0 size=      28kB time=00:00:09.66 bitrate=  24.1kbits/s speed=6.56x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.1337720Z [out#0/gif @ 0x558591f2e140] video:29kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.068381%
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.1339767Z frame=  150 fps= 99 q=-0.0 Lsize=      29kB time=00:00:09.93 bitrate=  23.6kbits/s speed=6.59x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.1521762Z ✓ GIF生成完成: output/夏.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.1955387Z 浏览器连接已断开
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2468384Z ✓ [1/1] 成功！GIF文件已保存到: output/夏.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2469007Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2469306Z ========== 生成完成 ==========
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2470229Z 总耗时: 0.34 分钟
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2470619Z 成功: 1 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2471037Z 跳过: 0 个 (文件已存在)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:43.2471421Z 失败: 0 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.7281317Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.7282709Z > chinese-stroke-order-generator@1.0.0 generate
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.7284023Z > node generate.js 季
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.7284593Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.9221464Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.9222677Z [1/1] 开始生成汉字 "季" 的GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.9230151Z 开始生成汉字 "季" 的笔顺动画GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:46.9264943Z 使用浏览器: /usr/bin/google-chrome
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:48.7224162Z 开始录制动画帧...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:49.2774590Z 检测到动画开始
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:50.3453585Z 已录制 10/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:51.4626840Z 已录制 20/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:52.4976046Z 已录制 30/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:53.5143538Z 已录制 40/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:54.5475696Z 已录制 50/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:55.5640692Z 已录制 60/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:56.6308858Z 已录制 70/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:57.7633336Z 已录制 80/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:58.9147826Z 已录制 90/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:07:59.8300009Z 已录制 100/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:00.7301510Z 已录制 110/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:01.6800309Z 已录制 120/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:02.6638001Z 已录制 130/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:03.6139574Z 已录制 140/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.5800976Z 已录制 150/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.5801861Z 开始生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6345588Z 使用FFmpeg生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6841501Z ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6842523Z   built with gcc 13 (Ubuntu 13.2.0-23ubuntu3)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6852659Z   configuration: --prefix=/usr --extra-version=3ubuntu5 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --disable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6862557Z   libavutil      58. 29.100 / 58. 29.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6863248Z   libavcodec     60. 31.102 / 60. 31.102
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6863909Z   libavformat    60. 16.100 / 60. 16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6864541Z   libavdevice    60.  3.100 / 60.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6865169Z   libavfilter     9. 12.100 /  9. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6865863Z   libswscale      7.  5.100 /  7.  5.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6866625Z   libswresample   4. 12.100 /  4. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6867277Z   libpostproc    57.  3.100 / 57.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6891219Z Input #0, image2, from 'temp/季/frame%04d.png':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6892039Z   Duration: 00:00:10.00, start: 0.000000, bitrate: N/A
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6893041Z   Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown), 540x540, 15 fps, 15 tbr, 15 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6905243Z Stream mapping:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6906006Z   Stream #0:0 -> #0:0 (png (native) -> gif (native))
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:04.6906948Z Press [q] to stop, [?] for help
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1535821Z [Parsed_palettegen_2 @ 0x559952dfc6c0] 255(+1) colors generated out of 571 colors; ratio=0.446585
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1538042Z [Parsed_palettegen_2 @ 0x559952dfc6c0] Duped color: FFE52C33
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1691262Z Output #0, gif, to 'output/季.gif':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1692450Z   Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1693455Z     encoder         : Lavf60.16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1694820Z   Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 540x540, q=2-31, 200 kb/s, 15 fps, 100 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1696223Z     Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.1697675Z       encoder         : Lavc60.31.102 gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:05.6765864Z frame=    0 fps=0.0 q=-0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.1813179Z frame=   74 fps=0.0 q=-0.0 size=      21kB time=00:00:04.93 bitrate=  34.0kbits/s speed=5.04x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.1884006Z frame=  148 fps=100 q=-0.0 size=      27kB time=00:00:09.86 bitrate=  22.1kbits/s speed=6.65x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.1886069Z [out#0/gif @ 0x559952dfa140] video:27kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.073303%
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.1888440Z frame=  150 fps=100 q=-0.0 Lsize=      27kB time=00:00:09.93 bitrate=  22.0kbits/s speed=6.63x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.2073254Z ✓ GIF生成完成: output/季.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.2518121Z 浏览器连接已断开
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3130277Z ✓ [1/1] 成功！GIF文件已保存到: output/季.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3132175Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3132516Z ========== 生成完成 ==========
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3133057Z 总耗时: 0.32 分钟
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3133465Z 成功: 1 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3133906Z 跳过: 0 个 (文件已存在)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:06.3134276Z 失败: 0 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.6995716Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.6997137Z > chinese-stroke-order-generator@1.0.0 generate
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.6998583Z > node generate.js 器
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.6999221Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.8959848Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.8961369Z [1/1] 开始生成汉字 "器" 的GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.8967602Z 开始生成汉字 "器" 的笔顺动画GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:09.9003578Z 使用浏览器: /usr/bin/google-chrome
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:11.8061056Z 开始录制动画帧...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:12.3615758Z 检测到动画开始
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:13.3776401Z 已录制 10/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:14.4275605Z 已录制 20/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:15.4439035Z 已录制 30/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:16.4609488Z 已录制 40/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:17.5121173Z 已录制 50/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:18.5948560Z 已录制 60/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:19.7118560Z 已录制 70/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:20.8301994Z 已录制 80/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:22.0137812Z 已录制 90/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:23.1790745Z 已录制 100/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:24.2795282Z 已录制 110/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:25.4625710Z 已录制 120/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:26.5622254Z 已录制 130/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:27.7295112Z 已录制 140/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.8463393Z 已录制 150/150 帧
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.8464240Z 开始生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9045042Z 使用FFmpeg生成GIF...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9548850Z ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9550061Z   built with gcc 13 (Ubuntu 13.2.0-23ubuntu3)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9560594Z   configuration: --prefix=/usr --extra-version=3ubuntu5 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --disable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9572312Z   libavutil      58. 29.100 / 58. 29.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9573222Z   libavcodec     60. 31.102 / 60. 31.102
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9574281Z   libavformat    60. 16.100 / 60. 16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9575132Z   libavdevice    60.  3.100 / 60.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9576162Z   libavfilter     9. 12.100 /  9. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9577060Z   libswscale      7.  5.100 /  7.  5.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9578102Z   libswresample   4. 12.100 /  4. 12.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9578902Z   libpostproc    57.  3.100 / 57.  3.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9599667Z Input #0, image2, from 'temp/器/frame%04d.png':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9600637Z   Duration: 00:00:10.00, start: 0.000000, bitrate: N/A
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9602139Z   Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown), 540x540, 15 fps, 15 tbr, 15 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9614656Z Stream mapping:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9616731Z   Stream #0:0 -> #0:0 (png (native) -> gif (native))
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:28.9617789Z Press [q] to stop, [?] for help
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4372185Z [Parsed_palettegen_2 @ 0x55b7a91826c0] 255(+1) colors generated out of 497 colors; ratio=0.513078
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4530562Z Output #0, gif, to 'output/器.gif':
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4531625Z   Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4532366Z     encoder         : Lavf60.16.100
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4533873Z   Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 540x540, q=2-31, 200 kb/s, 15 fps, 100 tbn
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4535128Z     Metadata:
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.4535775Z       encoder         : Lavc60.31.102 gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:29.9636296Z frame=    0 fps=0.0 q=-0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.4701982Z frame=   74 fps=0.0 q=-0.0 size=      17kB time=00:00:04.93 bitrate=  27.7kbits/s speed=4.96x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.4773237Z frame=  148 fps= 99 q=-0.0 size=      29kB time=00:00:09.86 bitrate=  24.2kbits/s speed=6.57x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.4775196Z [out#0/gif @ 0x55b7a9180140] video:30kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.066177%
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.4777277Z frame=  150 fps= 99 q=-0.0 Lsize=      30kB time=00:00:09.93 bitrate=  24.4kbits/s speed=6.55x    
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.4962165Z ✓ GIF生成完成: output/器.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5401755Z 浏览器连接已断开
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5989527Z ✓ [1/1] 成功！GIF文件已保存到: output/器.gif
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5990031Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5990309Z ========== 生成完成 ==========
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5990824Z 总耗时: 0.35 分钟
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5991255Z 成功: 1 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5991676Z 跳过: 0 个 (文件已存在)
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:30.5992093Z 失败: 0 个
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7265637Z ✅ Authenticated successfully with Google Service Account.
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7267218Z Drive output folder id = 1HmM8Z9MYis4Xl8TNSLkNIAFFoo8SxbZW
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7290712Z Processing row 2: 爱 ...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7294688Z   -> Failed: <HttpError 403 when requesting https://www.googleapis.com/upload/drive/v3/files?fields=id&alt=json&uploadType=multipart returned "Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/guides/about-shareddrives), or use OAuth delegation (http://support.google.com/a/answer/7281227) instead.". Details: "[***'message': 'Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/gu
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7299032Z Processing row 3: 夏 ...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7302613Z   -> Failed: <HttpError 403 when requesting https://www.googleapis.com/upload/drive/v3/files?fields=id&alt=json&uploadType=multipart returned "Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/guides/about-shareddrives), or use OAuth delegation (http://support.google.com/a/answer/7281227) instead.". Details: "[***'message': 'Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/gu
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7305840Z Processing row 4: 季 ...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7309629Z   -> Failed: <HttpError 403 when requesting https://www.googleapis.com/upload/drive/v3/files?fields=id&alt=json&uploadType=multipart returned "Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/guides/about-shareddrives), or use OAuth delegation (http://support.google.com/a/answer/7281227) instead.". Details: "[***'message': 'Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/gu
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7312875Z Processing row 5: 器 ...
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7316379Z   -> Failed: <HttpError 403 when requesting https://www.googleapis.com/upload/drive/v3/files?fields=id&alt=json&uploadType=multipart returned "Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/guides/about-shareddrives), or use OAuth delegation (http://support.google.com/a/answer/7281227) instead.". Details: "[***'message': 'Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/gu
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7319676Z 
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7320028Z ===== SUMMARY =====
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7320634Z Thành công: 0
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7321205Z Bỏ qua   : 0
+generate-gifs	Run Daily Batch Script	2026-05-09T14:08:33.7321735Z Lỗi      : 4
+generate-gifs	Post Setup Python	﻿2026-05-09T14:08:33.7927027Z Post job cleanup.
+generate-gifs	Post Setup Python	2026-05-09T14:08:33.9654109Z Cache hit occurred on the primary key setup-python-Linux-x64-24.04-Ubuntu-python-3.11.15-pip-c0d4ed02e72dfdcd3bbeb4b4d7b3cbfd72e89c0c115af177eed66899309bf5d7, not saving cache.
+generate-gifs	Post Setup Node.js	﻿2026-05-09T14:08:33.9768507Z Post job cleanup.
+generate-gifs	Post Setup Node.js	2026-05-09T14:08:34.1976039Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-e7577d0e1450756693bb4c037c09c1088ee62790b6806778d38c6ede0e02e648, not saving cache.
+generate-gifs	Post Checkout code	﻿2026-05-09T14:08:34.2141505Z Post job cleanup.
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3197319Z [command]/usr/bin/git version
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3240743Z git version 2.53.0
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3287836Z Temporarily overriding HOME='/home/runner/work/_temp/c770aef9-ee46-4776-83ca-ed6982c43c67' before making global git config changes
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3289760Z Adding repository directory to the temporary git global config as a safe directory
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3295035Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hanzi-generator-actions/hanzi-generator-actions
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3351122Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3392223Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3664256Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3692342Z http.https://github.com/.extraheader
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3707662Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.3745516Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.4005827Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+generate-gifs	Post Checkout code	2026-05-09T14:08:34.4044963Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+generate-gifs	Complete job	﻿2026-05-09T14:08:34.4527043Z Cleaning up orphan processes
+generate-gifs	Complete job	2026-05-09T14:08:34.4841660Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

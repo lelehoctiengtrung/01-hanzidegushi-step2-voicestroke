@@ -1,6 +1,7 @@
-"""Chinese Stroke Animation Engine - Multi-color, Bordeaux Red Final, Adaptive Pacing."""
+"""Chinese Stroke Animation Engine - Authentic HanziWriter Calligraphy ClipPath Algorithm."""
 import json
 import logging
+import math
 import os
 from typing import Dict, Any, List, Optional
 from src.stroke_cache import StrokeCache
@@ -16,7 +17,7 @@ BORDEAUX_RED = "#800020"
 
 
 class StrokeEngine:
-    """Generates animated Hanzi stroke visuals with adaptive pacing and transparent background."""
+    """Generates authentic Hanzi stroke animations using clip-path masking and brush medians."""
 
     def __init__(self, cache: Optional[StrokeCache] = None):
         self.cache = cache or StrokeCache()
@@ -34,44 +35,65 @@ class StrokeEngine:
             return min(15.0, 8.5 + (stroke_count - 8) * 0.8)
 
     def generate_stroke_animation(self, character: str, output_dir: str) -> Dict[str, Any]:
-        """Generates stroke.svg and stroke_info.json with multi-color & Bordeaux Red transition."""
+        """Generates authentic calligraphy stroke.svg with clip-path masks, multi-color & Bordeaux Red."""
         os.makedirs(output_dir, exist_ok=True)
         data = self.cache.get_stroke_data(character) or {}
         strokes = data.get("strokes", [])
+        medians = data.get("medians", [])
         stroke_count = len(strokes)
         total_duration = self.calculate_duration(stroke_count)
         stroke_dur = total_duration / max(1, stroke_count)
 
-        # Assign rainbow colors to each stroke
         colors = [RAINBOW_PALETTE[i % len(RAINBOW_PALETTE)] for i in range(stroke_count)]
+        clip_defs, anim_paths, all_css = [], [], []
 
-        svg_paths = []
-        for idx, path_d in enumerate(strokes):
+        for idx, (stroke_outline, median_pts) in enumerate(zip(strokes, medians)):
             color = colors[idx]
             delay = idx * stroke_dur
+
+            # Build median path string
+            if median_pts:
+                med_d = f"M {median_pts[0][0]} {median_pts[0][1]} " + " ".join([f"L {p[0]} {p[1]}" for p in median_pts[1:]])
+                length = sum(math.hypot(p2[0] - p1[0], p2[1] - p1[1]) for p1, p2 in zip(median_pts[:-1], median_pts[1:]))
+            else:
+                med_d = stroke_outline
+                length = 500.0
+            dash_len = max(length * 1.6, 600.0)
+
+            clip_defs.append(f'    <clipPath id="clip-{idx}"><path d="{stroke_outline}" /></clipPath>')
+
             anim_css = (
-                f"@keyframes draw_{idx} {{ "
-                f"0% {{ opacity: 0; stroke-dashoffset: 1024; stroke: {color}; }} "
-                f"20% {{ opacity: 1; stroke-dashoffset: 0; stroke: {color}; }} "
-                f"85% {{ stroke: {color}; }} "
-                f"100% {{ stroke: {BORDEAUX_RED}; fill: {BORDEAUX_RED}; opacity: 1; }} }}"
+                f"@keyframes draw_stroke_{idx} {{ "
+                f"0% {{ stroke-dashoffset: {dash_len:.0f}; stroke: {color}; opacity: 0; }} "
+                f"5% {{ opacity: 1; }} "
+                f"75% {{ stroke-dashoffset: 0; stroke: {color}; }} "
+                f"90% {{ stroke: {color}; }} "
+                f"100% {{ stroke-dashoffset: 0; stroke: {BORDEAUX_RED}; opacity: 1; }} }}"
             )
-            style = (
-                f"stroke: {color}; fill: none; stroke-width: 48; stroke-linecap: round; stroke-linejoin: round; "
-                f"stroke-dasharray: 1024; stroke-dashoffset: 0; "
-                f"animation: draw_{idx} {total_duration}s cubic-bezier(0.4, 0, 0.2, 1) forwards; animation-delay: {delay}s;"
+            all_css.append(anim_css)
+
+            path_tag = (
+                f'<path d="{med_d}" clip-path="url(#clip-{idx})" stroke="{color}" stroke-width="140" '
+                f'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="{dash_len:.0f}" '
+                f'stroke-dashoffset="{dash_len:.0f}" '
+                f'style="animation: draw_stroke_{idx} {total_duration:.2f}s cubic-bezier(0.4, 0, 0.2, 1) forwards; '
+                f'animation-delay: {delay:.2f}s;" />'
             )
-            svg_paths.append((path_d, style, anim_css))
+            anim_paths.append(f"    {path_tag}")
 
-        all_keyframes = "\n".join([item[2] for item in svg_paths])
-        path_tags = "\n".join([f'    <path d="{item[0]}" style="{item[1]}" />' for item in svg_paths])
+        defs_str = "\n".join(clip_defs)
+        css_str = "\n".join(all_css)
+        paths_str = "\n".join(anim_paths)
 
-        svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" style="background: transparent;">
+        svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="500" height="500" style="background: transparent;">
+  <defs>
+{defs_str}
+  </defs>
   <style>
-{all_keyframes}
+{css_str}
   </style>
   <g transform="scale(1, -1) translate(0, -900)">
-{path_tags}
+{paths_str}
   </g>
 </svg>"""
 
@@ -92,5 +114,5 @@ class StrokeEngine:
         with open(os.path.join(output_dir, "stroke_info.json"), "w", encoding="utf-8") as f:
             json.dump(info, f, ensure_ascii=False, indent=2)
 
-        logger.info(f"🎨 Generated stroke animation for '{character}' ({stroke_count} strokes, {total_duration:.1f}s).")
+        logger.info(f"🎨 Generated authentic calligraphy stroke for '{character}' ({stroke_count} strokes, {total_duration:.1f}s).")
         return info

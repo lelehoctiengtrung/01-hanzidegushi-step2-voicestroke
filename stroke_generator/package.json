@@ -1,0 +1,24 @@
+{
+  "name": "chinese-stroke-order-generator",
+  "version": "1.0.0",
+  "description": "Chinese Stroke Order Generator - Generate Chinese character stroke order animation GIFs",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js",
+    "batch-generate": "node generate.js input/characters.json",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "hanzi",
+    "chinese",
+    "stroke-order",
+    "gif",
+    "animation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "hanzi-writer": "^2.2.2",
+    "puppeteer": "^24.43.0"
+  }
+}
