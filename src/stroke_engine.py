@@ -31,7 +31,7 @@ class StrokeEngine:
             return min(15.0, 8.5 + (stroke_count - 8) * 0.8)
 
     def _generate_fallback_gif(self, character: str, stroke_data: Dict[str, Any], output_path: str) -> None:
-        """Generates a valid 500x500 transparent animated GIF using Pillow."""
+        """Generates a valid 500x500 transparent animated GIF with multi-color & Bordeaux Red finish."""
         frames = []
         medians = stroke_data.get("medians", [[[200, 200], [300, 300]], [[150, 400], [350, 400]]])
         total_strokes = len(medians)
@@ -39,17 +39,24 @@ class StrokeEngine:
         total_duration = self.calculate_duration(total_strokes)
         total_frames = max(15, int(total_duration * fps))
 
+        palette_rgba = [
+            (230, 57, 70, 255), (244, 162, 97, 255), (42, 157, 143, 255), (69, 123, 157, 255),
+            (155, 93, 229, 255), (241, 91, 181, 255), (0, 187, 249, 255), (221, 161, 94, 255)
+        ]
+        bordeaux_rgba = (128, 0, 32, 255)
+
         for f_idx in range(total_frames):
             img = Image.new("RGBA", (500, 500), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
             progress = (f_idx + 1) / float(total_frames)
             active_stroke_idx = min(total_strokes - 1, int(progress * total_strokes))
+            is_final_phase = progress >= 0.85
 
             for s_i in range(active_stroke_idx + 1):
                 pts = medians[s_i]
                 if len(pts) >= 2:
-                    color = (128, 0, 32, 255) if f_idx == total_frames - 1 else (230, 57, 46, 255)
-                    draw.line([(p[0] * 0.5, 500 - p[1] * 0.5) for p in pts], fill=color, width=24)
+                    color = bordeaux_rgba if is_final_phase else palette_rgba[s_i % len(palette_rgba)]
+                    draw.line([(p[0] * 0.5, 500 - p[1] * 0.5) for p in pts], fill=color, width=28)
             frames.append(img.convert("P", palette=Image.ADAPTIVE))
 
         if frames:

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chinese-stroke-order-generator</title>
+    <title>Chinese Stroke Order Generator</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background: #87CEEB; /* 浅蓝色背景 */
+            background: transparent !important;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,97 +26,111 @@
             width: 500px;
             height: 500px;
             position: relative;
-        }
-        .grid-line {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.28);
-            pointer-events: none;
-        }
-        .grid-line.horizontal {
-            left: 0;
-            top: 50%;
-            width: 100%;
-            height: 2px;
-            transform: translateY(-50%);
-        }
-        .grid-line.vertical {
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            transform: translateX(-50%);
-        }
-        .grid-line.diagonal {
-            top: 50%;
-            left: 50%;
-            width: 141.5%;
-            height: 2px;
-            transform-origin: center;
-        }
-        .grid-line.diagonal-a {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-        .grid-line.diagonal-b {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-        .grid-border {
-            position: absolute;
-            inset: 0;
-            border: 2px solid rgba(255, 255, 255, 0.32);
-            pointer-events: none;
+            background: transparent !important;
         }
         #character-container {
             width: 500px;
             height: 500px;
             position: relative;
+            background: transparent !important;
         }
-
+        svg {
+            background: transparent !important;
+        }
     </style>
 </head>
 <body>
     <div id="canvas-container">
-        <div class="grid-border"></div>
-        <div class="grid-line horizontal"></div>
-        <div class="grid-line vertical"></div>
-        <div class="grid-line diagonal diagonal-a"></div>
-        <div class="grid-line diagonal diagonal-b"></div>
         <div id="character-container"></div>
-
     </div>
     <script src="/node_modules/hanzi-writer/dist/hanzi-writer.min.js"></script>
     <script>
-        // 从URL参数获取汉字
         const urlParams = new URLSearchParams(window.location.search);
-        const character = urlParams.get('char') || '中';
+        const character = urlParams.get('char') || '门';
         
+        const RAINBOW_PALETTE = [
+            '#E63946', '#F4A261', '#2A9D8F', '#457B9D',
+            '#9B5DE5', '#F15BB5', '#00BBF9', '#00F5D4',
+            '#DDA15E', '#BC6C25', '#E76F51', '#264653'
+        ];
+        const BORDEAUX_RED = '#800020';
+
         const writer = HanziWriter.create('character-container', character, {
             width: 500,
             height: 500,
-            padding: 10,
-            strokeColor: '#FFFFFF', // 白色字符
-            strokeWidth: 5, // 增加笔画宽度以适应更大的尺寸
+            padding: 20,
+            strokeColor: '#E63946',
+            strokeWidth: 6,
             showCharacter: false,
             showOutline: false,
-            delayBetweenStrokes: 400, // 笔画之间的延迟，让动画更慢
-            delayBetweenLoops: 0,
-            strokeAnimationDuration: 1200, // 每个笔画的动画时长，让动画更慢
-            radicalColor: '#FF0000' // 红色笔画高亮
+            delayBetweenStrokes: 300,
+            strokeAnimationDuration: 800
         });
-        
-        // 暴露writer对象供外部访问
-        window.writer = writer;
-        window.loadError = null;
 
-        // 用于通知外部动画已准备好
+        window.writer = writer;
         window.animationReady = false;
         window.animationStarted = false;
-        window.animationProgress = 0;
-        
-        // hanzi-writer的create方法已经加载了字符，等待一小段时间确保渲染完成
+        window.animationComplete = false;
+
+        async function startMultiColorAnimation() {
+            window.animationStarted = true;
+            try {
+                // Get character stroke count
+                const charData = await HanziWriter.loadCharacterData(character);
+                const strokeCount = charData.strokes.length;
+
+                // Animate each stroke with its distinct rainbow color
+                for (let i = 0; i < strokeCount; i++) {
+                    const color = RAINBOW_PALETTE[i % RAINBOW_PALETTE.length];
+                    
+                    // Set current stroke color before animating
+                    await writer.animateStroke(i, {
+                        strokeColor: color
+                    });
+                    
+                    // Style the rendered SVG stroke path to persist its multi-color
+                    const svg = document.querySelector('#character-container svg');
+                    if (svg) {
+                        const paths = svg.querySelectorAll('path');
+                        if (paths[i]) {
+                            paths[i].setAttribute('stroke', color);
+                            paths[i].style.stroke = color;
+                        }
+                    }
+                    await new Promise(r => setTimeout(r, 200));
+                }
+
+                // Brief pause after all strokes are drawn
+                await new Promise(r => setTimeout(r, 400));
+
+                // Turn all strokes into Bordeaux Red (#800020)
+                const svg = document.querySelector('#character-container svg');
+                if (svg) {
+                    const paths = svg.querySelectorAll('path');
+                    paths.forEach(p => {
+                        p.setAttribute('stroke', BORDEAUX_RED);
+                        p.style.stroke = BORDEAUX_RED;
+                    });
+                }
+                await writer.updateColor('strokeColor', BORDEAUX_RED);
+
+                // Hold final Bordeaux Red state for 1.2 seconds
+                await new Promise(r => setTimeout(r, 1200));
+                window.animationComplete = true;
+            } catch (err) {
+                console.error('Animation error:', err);
+                // Fallback standard animation
+                await writer.animateCharacter();
+                await writer.updateColor('strokeColor', BORDEAUX_RED);
+                window.animationComplete = true;
+            }
+        }
+
+        window.startMultiColorAnimation = startMultiColorAnimation;
+
         setTimeout(() => {
             window.animationReady = true;
-        }, 800);
+        }, 600);
     </script>
 </body>
 </html>
-
