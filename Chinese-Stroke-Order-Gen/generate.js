@@ -234,62 +234,44 @@ async function generateGIF(character) {
         const containerHtml = await page.evaluate(() => document.querySelector('#character-container').innerHTML);
         console.log(`[FULL CONTAINER HTML]:\n${containerHtml}`);
 
-        console.log(`汉字 "${character}" 共有 ${strokeCount} 个笔画，开始逐帧渲染...`);
+        console.log(`汉字 "${character}" 共有 ${strokeCount} 个笔画，开始逐帧录制原生动画...`);
 
-        const framesPerStroke = 10;
-        const pauseFrames = 3;
-        const holdFrames = 12;
+        // 启动原生 HanziWriter 笔画动画
+        await page.evaluate(() => {
+            window.startNativeAnimation();
+        });
+
         let frameIndex = 0;
-        const container = await page.$('#character-container') || await page.$('#canvas-container');
+        const maxFrames = 150;
+        const holdFrames = 14;
+        const container = await page.$('#character-container');
 
-        for (let s = 0; s < strokeCount; s++) {
-            for (let f = 1; f <= framesPerStroke; f++) {
-                const progress = f / framesPerStroke;
-                const easedProgress = -Math.cos(progress * Math.PI) / 2 + 0.5;
+        while (frameIndex < maxFrames) {
+            const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
+            if (container) {
+                await container.screenshot({
+                    path: framePath,
+                    omitBackground: CONFIG.mode === 'transparent'
+                });
+            } else {
+                await page.screenshot({
+                    path: framePath,
+                    omitBackground: CONFIG.mode === 'transparent'
+                });
+            }
+            frameIndex++;
 
-                await page.evaluate((strokeIdx, portion) => {
-                    window.renderProgress(strokeIdx, portion);
-                }, s, easedProgress);
-
-                const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
-                if (container) {
-                    await container.screenshot({
-                        path: framePath,
-                        omitBackground: CONFIG.mode === 'transparent'
-                    });
-                } else {
-                    await page.screenshot({
-                        path: framePath,
-                        omitBackground: CONFIG.mode === 'transparent'
-                    });
-                }
-                frameIndex++;
+            const isFinished = await page.evaluate(() => window.animationFinished === true);
+            if (isFinished) {
+                console.log(`动画在第 ${frameIndex} 帧完成渲染！`);
+                break;
             }
 
-            if (s < strokeCount - 1) {
-                for (let p = 0; p < pauseFrames; p++) {
-                    const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
-                    if (container) {
-                        await container.screenshot({
-                            path: framePath,
-                            omitBackground: CONFIG.mode === 'transparent'
-                        });
-                    } else {
-                        await page.screenshot({
-                            path: framePath,
-                            omitBackground: CONFIG.mode === 'transparent'
-                        });
-                    }
-                    frameIndex++;
-                }
-            }
+            // 推进虚拟时钟 50毫秒 (20 fps)
+            await page.evaluate(() => window.advanceTime(50));
         }
 
-        // 最后一笔完成后，全字保持展示若干帧
-        await page.evaluate((strokeIdx) => {
-            window.renderProgress(strokeIdx, 1.0);
-        }, strokeCount - 1);
-
+        // 保持展示若干帧
         for (let h = 0; h < holdFrames; h++) {
             const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
             if (container) {

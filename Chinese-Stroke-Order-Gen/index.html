@@ -22,138 +22,73 @@
             position: relative;
             overflow: hidden;
         }
-        body.preview-mode {
-            background: #87CEEB;
-        }
-        #canvas-container {
-            width: 500px;
-            height: 500px;
-            position: relative;
-        }
-        .grid-line {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.28);
-            pointer-events: none;
-            display: none;
-        }
-        body.preview-mode .grid-line {
-            display: block;
-        }
-        .grid-line.horizontal {
-            left: 0;
-            top: 50%;
-            width: 100%;
-            height: 2px;
-            transform: translateY(-50%);
-        }
-        .grid-line.vertical {
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            transform: translateX(-50%);
-        }
-        .grid-line.diagonal {
-            top: 50%;
-            left: 50%;
-            width: 141.5%;
-            height: 2px;
-            transform-origin: center;
-        }
-        .grid-line.diagonal-a {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-        .grid-line.diagonal-b {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-        .grid-border {
-            position: absolute;
-            inset: 0;
-            border: 2px solid rgba(255, 255, 255, 0.32);
-            pointer-events: none;
-            display: none;
-        }
-        body.preview-mode .grid-border {
-            display: block;
-        }
         #character-container {
             width: 500px;
             height: 500px;
             position: relative;
         }
-
     </style>
+    <script>
+        // Deterministic Virtual Clock for exact frame-by-frame animation capture
+        (function() {
+            let currentTime = 1000;
+            let rafCallbacks = [];
+            let timeouts = [];
+            let nextId = 1;
+
+            window.performance.now = () => currentTime;
+            Date.now = () => currentTime;
+
+            window.requestAnimationFrame = function(cb) {
+                const id = ++nextId;
+                rafCallbacks.push({ id, cb });
+                return id;
+            };
+            window.cancelAnimationFrame = function(id) {
+                rafCallbacks = rafCallbacks.filter(r => r.id !== id);
+            };
+
+            window.setTimeout = function(cb, delay) {
+                const id = ++nextId;
+                timeouts.push({ id, cb, triggerTime: currentTime + (delay || 0) });
+                return id;
+            };
+            window.clearTimeout = function(id) {
+                timeouts = timeouts.filter(t => t.id !== id);
+            };
+
+            window.advanceTime = function(ms) {
+                currentTime += ms;
+
+                // Run due timeouts
+                const dueTimeouts = timeouts.filter(t => t.triggerTime <= currentTime);
+                timeouts = timeouts.filter(t => t.triggerTime > currentTime);
+                dueTimeouts.sort((a, b) => a.triggerTime - b.triggerTime);
+                for (let t of dueTimeouts) {
+                    try { t.cb(); } catch (e) { console.error('Timeout error:', e); }
+                }
+
+                // Run RAF callbacks
+                const currentRafs = rafCallbacks;
+                rafCallbacks = [];
+                for (let r of currentRafs) {
+                    try { r.cb(currentTime); } catch (e) { console.error('RAF error:', e); }
+                }
+            };
+        })();
+    </script>
+    <script src="/node_modules/hanzi-writer/dist/hanzi-writer.min.js"></script>
 </head>
 <body>
-    <div id="canvas-container">
-        <div class="grid-border"></div>
-        <div class="grid-line horizontal"></div>
-        <div class="grid-line vertical"></div>
-        <div class="grid-line diagonal diagonal-a"></div>
-        <div class="grid-line diagonal diagonal-b"></div>
-        <div id="character-container"></div>
-
-    </div>
-    <script src="/node_modules/hanzi-writer/dist/hanzi-writer.min.js"></script>
+    <div id="character-container"></div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const character = urlParams.get('char') || '中';
-        const mode = urlParams.get('mode') || 'transparent';
-
-        if (mode === 'preview') {
-            document.body.classList.add('preview-mode');
-        }
 
         window.writer = null;
         window.loadError = null;
         window.animationReady = false;
-
-        window.renderProgress = function(strokeIndex, portion) {
-            if (!window.writer || !window.writer._hanziWriterRenderer || !window.writer._hanziWriterRenderer._mainCharRenderer) {
-                return;
-            }
-            const mainCharRenderer = window.writer._hanziWriterRenderer._mainCharRenderer;
-            if (mainCharRenderer._group) {
-                mainCharRenderer._group.style.removeProperty('display');
-                mainCharRenderer._group.style.opacity = '1';
-            }
-
-            const strokeRenderers = mainCharRenderer._strokeRenderers;
-            if (!strokeRenderers || strokeRenderers.length === 0) return;
-
-            const bordeaux = { r: 128, g: 0, b: 32, a: 1 };
-            const totalStrokes = strokeRenderers.length;
-
-            for (let i = 0; i < totalStrokes; i++) {
-                const sr = strokeRenderers[i];
-                if (!sr) continue;
-                sr._oldProps = {}; // Invalidate oldProps cache to ensure Chromium updates DOM
-
-                if (i < strokeIndex) {
-                    sr.render({
-                        strokeColor: bordeaux,
-                        radicalColor: bordeaux,
-                        opacity: 1,
-                        displayPortion: 1.0
-                    });
-                } else if (i === strokeIndex) {
-                    const p = Math.max(0, Math.min(1, portion));
-                    sr.render({
-                        strokeColor: bordeaux,
-                        radicalColor: bordeaux,
-                        opacity: p > 0.001 ? 1 : 0,
-                        displayPortion: p
-                    });
-                } else {
-                    sr.render({
-                        strokeColor: bordeaux,
-                        radicalColor: bordeaux,
-                        opacity: 0,
-                        displayPortion: 0
-                    });
-                }
-            }
-        };
+        window.animationFinished = false;
 
         function initHanziWriter(charData) {
             try {
@@ -161,12 +96,12 @@
                     width: 500,
                     height: 500,
                     padding: 30,
-                    strokeColor: '#800020', // Bordeaux Red
+                    strokeColor: '#800020', // Solid Bordeaux Red
                     strokeWidth: 5,
-                    showCharacter: true,
+                    showCharacter: false,
                     showOutline: false,
-                    delayBetweenStrokes: 0,
-                    delayBetweenLoops: 0,
+                    strokeAnimationSpeed: 1.0,
+                    delayBetweenStrokes: 120,
                     radicalColor: '#800020'
                 };
                 if (charData) {
@@ -177,19 +112,17 @@
 
                 if (writer._withDataPromise) {
                     writer._withDataPromise.then(function() {
-                        console.log('HanziWriter _character fully mounted!');
-                        window.renderProgress(0, 0);
+                        console.log('HanziWriter loaded! Starting animateCharacter...');
                         window.animationReady = true;
                     }).catch(function(err) {
-                        console.error('HanziWriter withDataPromise error:', err);
+                        console.error('HanziWriter error:', err);
                         window.loadError = (err && err.message) || String(err);
                         window.animationReady = true;
                     });
                 } else {
                     setTimeout(() => {
-                        window.renderProgress(0, 0);
                         window.animationReady = true;
-                    }, 200);
+                    }, 100);
                 }
             } catch (err) {
                 console.error('Error creating HanziWriter:', err);
@@ -197,6 +130,16 @@
                 window.animationReady = true;
             }
         }
+
+        window.startNativeAnimation = function() {
+            if (!window.writer) return Promise.resolve();
+            return window.writer.animateCharacter({
+                onComplete: function() {
+                    console.log('Native animateCharacter completed!');
+                    window.animationFinished = true;
+                }
+            });
+        };
 
         if (window.__INITIAL_CHAR_DATA__) {
             initHanziWriter(window.__INITIAL_CHAR_DATA__);
