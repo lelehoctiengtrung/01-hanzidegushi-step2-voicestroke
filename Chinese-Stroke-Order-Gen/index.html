@@ -115,21 +115,36 @@
             const strokeRenderers = window.writer._hanziWriterRenderer._mainCharRenderer._strokeRenderers;
             if (!strokeRenderers || strokeRenderers.length === 0) return;
 
+            const bordeaux = { r: 128, g: 0, b: 32, a: 1 };
             const totalStrokes = strokeRenderers.length;
+
             for (let i = 0; i < totalStrokes; i++) {
                 const sr = strokeRenderers[i];
-                if (!sr || !sr._animationPath) continue;
+                if (!sr) continue;
+                sr._oldProps = {}; // Invalidate oldProps cache to ensure Chromium updates DOM
 
                 if (i < strokeIndex) {
-                    sr._animationPath.style.opacity = 1;
-                    sr._animationPath.style.strokeDashoffset = sr._getStrokeDashoffset(1.0);
+                    sr.render({
+                        strokeColor: bordeaux,
+                        radicalColor: bordeaux,
+                        opacity: 1,
+                        displayPortion: 1.0
+                    });
                 } else if (i === strokeIndex) {
                     const p = Math.max(0, Math.min(1, portion));
-                    sr._animationPath.style.opacity = p > 0.001 ? 1 : 0;
-                    sr._animationPath.style.strokeDashoffset = sr._getStrokeDashoffset(p);
+                    sr.render({
+                        strokeColor: bordeaux,
+                        radicalColor: bordeaux,
+                        opacity: p > 0.001 ? 1 : 0,
+                        displayPortion: p
+                    });
                 } else {
-                    sr._animationPath.style.opacity = 0;
-                    sr._animationPath.style.strokeDashoffset = sr._getStrokeDashoffset(0);
+                    sr.render({
+                        strokeColor: bordeaux,
+                        radicalColor: bordeaux,
+                        opacity: 0,
+                        displayPortion: 0
+                    });
                 }
             }
         };
