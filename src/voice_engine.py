@@ -1,4 +1,4 @@
-"""Voice Engine - Strictly uses k2-fsa/OmniVoice with Reference Audio for Vietnamese."""
+"""Voice Engine - Strictly uses k2-fsa/OmniVoice (VI) and Edge-TTS (ZH)."""
 import asyncio
 import contextlib
 import logging
@@ -8,11 +8,9 @@ import wave
 from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
-
-# Ensure local cloned OmniVoice repository is on python sys.path
-OMNIVOICE_REPO_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "OmniVoice")
-if os.path.exists(OMNIVOICE_REPO_DIR) and OMNIVOICE_REPO_DIR not in sys.path:
-    sys.path.insert(0, OMNIVOICE_REPO_DIR)
+OMNIVOICE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "OmniVoice")
+if os.path.exists(OMNIVOICE_DIR) and OMNIVOICE_DIR not in sys.path:
+    sys.path.insert(0, OMNIVOICE_DIR)
 
 VOICE_ZH = "zh-CN-XiaoxiaoNeural"
 DEFAULT_REF_AUDIO = os.path.join(
@@ -21,7 +19,7 @@ DEFAULT_REF_AUDIO = os.path.join(
 
 
 class VoiceEngine:
-    """Synthesizes Vietnamese audio exclusively using k2-fsa/OmniVoice Zero-Shot Voice Cloning."""
+    """Synthesizes Vietnamese audio with OmniVoice Voice Cloning & Chinese with Edge-TTS."""
 
     def __init__(self, ref_audio_path: Optional[str] = None):
         self.ref_audio_path = ref_audio_path or DEFAULT_REF_AUDIO
@@ -29,7 +27,7 @@ class VoiceEngine:
         self._init_omnivoice()
 
     def _init_omnivoice(self) -> None:
-        """Initializes and caches the k2-fsa/OmniVoice model from local repo / HuggingFace."""
+        """Initializes and caches the k2-fsa/OmniVoice model."""
         try:
             from omnivoice.models.omnivoice import OmniVoice
             import torch
@@ -60,7 +58,6 @@ class VoiceEngine:
         """Synthesizes Vietnamese audio strictly using OmniVoice with reference sample."""
         if not os.path.exists(self.ref_audio_path):
             raise FileNotFoundError(f"Missing reference voice file: {self.ref_audio_path}")
-
         if self._omnivoice_model:
             import soundfile as sf
             logger.info(f"🎙️ [OmniVoice Cloning] Generating: '{text[:30]}...'")
@@ -69,7 +66,6 @@ class VoiceEngine:
             )
             sf.write(output_wav, audios[0], self._omnivoice_model.sampling_rate)
             return
-
         logger.warning(f"⚠️ OmniVoice loading on runner. Generating valid WAV for '{text[:20]}'.")
         with wave.open(output_wav, "wb") as wf:
             wf.setnchannels(1)
@@ -95,7 +91,7 @@ class VoiceEngine:
         """Synthesizes 5 Vietnamese OmniVoice tracks & 3 Chinese tracks."""
         os.makedirs(output_dir, exist_ok=True)
         char = script_data.get("character", "")
-        meaning_clean = script_data.get("meaning", "").strip().lower()
+        meaning = script_data.get("meaning", "").strip().lower()
         story = script_data.get("story", "").strip()
         examples = script_data.get("examples", [])
         ex1_h = examples[0].get("hanzi", "") if len(examples) > 0 else "Từ 1"
@@ -104,24 +100,22 @@ class VoiceEngine:
         ex2_m = examples[1].get("mean", "").strip().lower() if len(examples) > 1 else "nghĩa 2"
 
         tracks = [
-            ("vi_part1.wav", f'Lê Lê kể chữ "{meaning_clean}" nhé.', True),
+            ("vi_part1.wav", f'Lê Lê kể chữ "{meaning}" nhé.', True),
             ("zh_main.mp3", char, False),
-            ("vi_part2.wav", f"Chữ này có nghĩa là {meaning_clean}. {story}", True),
+            ("vi_part2.wav", f"Chữ này có nghĩa là {meaning}. {story}", True),
             ("vi_vidu.wav", "Ví dụ như: ", True),
             ("zh_1.mp3", ex1_h, False),
             ("vi_part3.wav", f"có nghĩa là {ex1_m}, và", True),
             ("zh_2.mp3", ex2_h, False),
             ("vi_part4.wav", f"có nghĩa là {ex2_m}.", True),
         ]
-
         durations = {}
-        for filename, text, is_vi in tracks:
-            fpath = os.path.join(output_dir, filename)
+        for fname, text, is_vi in tracks:
+            fpath = os.path.join(output_dir, fname)
             if is_vi:
                 self.synthesize_vietnamese_omnivoice(text, fpath)
             else:
                 asyncio.run(self._synth_chinese_edge(text, fpath))
-            durations[filename] = self.get_audio_duration(fpath)
-            logger.info(f"🎙️ Synthesized '{filename}' ({durations[filename]:.2f}s) - {text[:30]}...")
-
+            durations[fname] = self.get_audio_duration(fpath)
+            logger.info(f"🎙️ Synthesized '{fname}' ({durations[fname]:.2f}s) - {text[:30]}...")
         return durations

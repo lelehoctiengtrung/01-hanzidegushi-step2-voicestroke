@@ -1,0 +1,80 @@
+name: "Step 2.1: Chinese Stroke (Hanzi De Gushi)"
+
+on:
+  workflow_dispatch:
+    inputs:
+      row:
+        description: "Số hàng cụ thể cần chạy (ví dụ: 226)"
+        required: false
+        default: ""
+      character:
+        description: "Chữ Hán cụ thể cần chạy (ví dụ: '门')"
+        required: false
+        default: ""
+  repository_dispatch:
+    types: [trigger_hanzidegushi_step2_1]
+
+jobs:
+  stroke_generation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Codebase"
+        uses: actions/checkout@v4
+
+      - name: "Setup Python 3.11"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: "Setup Node.js 20"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: "Install System Dependencies (FFmpeg, libsndfile)"
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libsndfile1
+
+      - name: "Cache Chinese-Stroke-Order-Gen Dependencies"
+        uses: actions/cache@v4
+        with:
+          path: |
+            Chinese-Stroke-Order-Gen/node_modules
+            stroke_generator/node_modules
+            ~/.npm
+          key: ${{ runner.os }}-stroke-gen-v1
+          restore-keys: |
+            ${{ runner.os }}-stroke-gen-
+
+      - name: "Install Stroke Generator NPM Dependencies"
+        run: |
+          if [ -d "Chinese-Stroke-Order-Gen" ]; then
+            cd Chinese-Stroke-Order-Gen && npm install && cd ..
+          fi
+          if [ -d "stroke_generator" ]; then
+            cd stroke_generator && npm install && cd ..
+          fi
+
+      - name: "Install Python Dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: "Execute Step 2.1 Chinese Stroke Runner"
+        env:
+          PYTHONPATH: .
+          GCP_SERVICE_ACCOUNT_BASE64: ${{ secrets.GCP_SERVICE_ACCOUNT_BASE64 }}
+          USER_OAUTH2_BASE64: ${{ secrets.USER_OAUTH2_BASE64 }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+        run: |
+          ROW_ARG=""
+          if [ -n "${{ github.event.inputs.row }}" ]; then
+            ROW_ARG="--row ${{ github.event.inputs.row }}"
+          fi
+          CHAR_ARG=""
+          if [ -n "${{ github.event.inputs.character }}" ]; then
+            CHAR_ARG="--character ${{ github.event.inputs.character }}"
+          fi
+          python src/step2_1_stroke_runner.py $ROW_ARG $CHAR_ARG

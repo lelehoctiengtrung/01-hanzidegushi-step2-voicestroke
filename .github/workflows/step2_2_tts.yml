@@ -1,4 +1,4 @@
-name: "Step 2: Voice & Stroke Generation (Hanzi De Gushi)"
+name: "Step 2.2: TTS Voice Generation (Hanzi De Gushi)"
 
 on:
   workflow_dispatch:
@@ -12,10 +12,10 @@ on:
         required: false
         default: ""
   repository_dispatch:
-    types: [trigger_hanzidegushi_step2]
+    types: [trigger_hanzidegushi_step2_2]
 
 jobs:
-  voicestroke_generation:
+  tts_voice_generation:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Codebase"
@@ -27,20 +27,10 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
-      - name: "Setup Node.js 20"
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: "Install System Dependencies (FFmpeg, libsndfile)"
+      - name: "Install System Dependencies (libsndfile)"
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libsndfile1
-
-      - name: "Install Stroke Generator NPM Dependencies"
-        working-directory: ./stroke_generator
-        run: |
-          npm install
+          sudo apt-get install -y libsndfile1
 
       - name: "Install Python Dependencies"
         run: |
@@ -49,29 +39,20 @@ jobs:
           pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
           pip install git+https://github.com/k2-fsa/OmniVoice.git
 
-      - name: "Cache Hanzi Stroke Data & OmniVoice Model"
+      - name: "Cache OmniVoice Model & Edge TTS"
         uses: actions/cache@v4
         with:
           path: |
-            assets/strokes_cache
             assets/omnivoice_cache
             ~/.cache/huggingface
             ~/.cache/edge_tts
-          key: ${{ runner.os }}-omnivoice-hanzi-v2
+          key: ${{ runner.os }}-omnivoice-tts-v1
           restore-keys: |
-            ${{ runner.os }}-omnivoice-hanzi-
+            ${{ runner.os }}-omnivoice-tts-
 
-      - name: "Run Step 2 TDD Test Suite"
+      - name: "Execute Step 2.2 TTS Voice Runner"
         env:
           PYTHONPATH: .
-        run: |
-          pytest tests/ -v
-
-      - name: "Execute Step 2 Voice & Stroke Runner"
-        env:
-          PYTHONPATH: .
-          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
-          OPENROUTER_API_KEYS: ${{ secrets.OPENROUTER_API_KEYS || secrets.OPENROUTER_API_KEY }}
           GCP_SERVICE_ACCOUNT_BASE64: ${{ secrets.GCP_SERVICE_ACCOUNT_BASE64 }}
           USER_OAUTH2_BASE64: ${{ secrets.USER_OAUTH2_BASE64 }}
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
@@ -84,4 +65,4 @@ jobs:
           if [ -n "${{ github.event.inputs.character }}" ]; then
             CHAR_ARG="--character ${{ github.event.inputs.character }}"
           fi
-          python src/step2_runner.py $ROW_ARG $CHAR_ARG
+          python src/step2_2_tts_runner.py $ROW_ARG $CHAR_ARG
