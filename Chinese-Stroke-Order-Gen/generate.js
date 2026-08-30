@@ -165,6 +165,39 @@ async function generateGIF(character) {
             deviceScaleFactor: 2
         });
 
+        // 预先读取本地或CDN的汉字笔画数据，直接注入页面，保证100%离线极速渲染
+        let charData = null;
+        const localCachePath = path.resolve(__dirname, '../assets/strokes_cache', `${character}.json`);
+        if (fs.existsSync(localCachePath)) {
+            try {
+                charData = JSON.parse(fs.readFileSync(localCachePath, 'utf-8'));
+                console.log(`⚡ 已从本地缓存读取汉字 "${character}" 笔画数据 (${charData.strokes ? charData.strokes.length : 0} 笔)`);
+            } catch (e) {
+                console.warn(`读取本地缓存失败: ${e.message}`);
+            }
+        }
+
+        if (!charData) {
+            try {
+                const cdnUrl = `https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/${encodeURIComponent(character)}.json`;
+                const resp = await fetch(cdnUrl);
+                if (resp.ok) {
+                    charData = await resp.json();
+                    fs.mkdirSync(path.dirname(localCachePath), { recursive: true });
+                    fs.writeFileSync(localCachePath, JSON.stringify(charData, null, 2), 'utf-8');
+                    console.log(`📥 已从CDN下载并缓存汉字 "${character}" 笔画数据`);
+                }
+            } catch (e) {
+                console.warn(`CDN下载笔画数据失败: ${e.message}`);
+            }
+        }
+
+        if (charData) {
+            await page.evaluateOnNewDocument((data) => {
+                window.__INITIAL_CHAR_DATA__ = data;
+            }, charData);
+        }
+
         // 加载HTML页面
         await page.goto(`${origin}/index.html?char=${encodeURIComponent(character)}&mode=${encodeURIComponent(CONFIG.mode)}`, {
             waitUntil: 'networkidle0',
