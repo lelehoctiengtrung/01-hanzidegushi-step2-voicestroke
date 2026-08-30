@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 def run_stroke_flow(char: str, work_dir: str) -> Dict[str, Any]:
     """Flow 1: Chinese Stroke Generator with Gatekeeper 2.A."""
-    logger.info(f"🎨 [Flow 1] Generating Stroke Animation for '{char}'...")
+    logger.info(f"🎨 [Flow 1] Generating Stroke Animation GIF for '{char}'...")
     engine, gk_2a = StrokeEngine(), Gatekeeper2A()
     info = engine.generate_stroke_animation(char, work_dir)
     ok_a, msg_a = gk_2a.validate_stroke_assets(work_dir)
@@ -56,7 +56,6 @@ def process_single_row(row_info: Dict[str, Any]) -> bool:
     logger.info(f"👉 Starting Step 2 Processing for Row {row_idx} ('{char}')...")
     gdrive, sheets = GDriveAdapter(), SheetsAdapter()
 
-    # Load script config from Drive or build minimal fallback
     script_data = gdrive.download_config_json(folder_id) if folder_id else None
     if not script_data:
         script_data = {
@@ -68,22 +67,20 @@ def process_single_row(row_info: Dict[str, Any]) -> bool:
 
     work_dir = tempfile.mkdtemp(prefix=f"step2_{char}_")
     try:
-        # Execute Flow 1 & Flow 2 in Parallel
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             fut_stroke = executor.submit(run_stroke_flow, char, work_dir)
             fut_voice = executor.submit(run_voice_flow, script_data, work_dir)
             stroke_res = fut_stroke.result()
             voice_res = fut_voice.result()
 
-        # Job 3: Finalize & Drive Sync
-        logger.info(f"🚀 [Job 3] Uploading Step 2 Assets to GDrive for '{char}'...")
+        logger.info(f"🚀 [Job 3] Uploading Step 2 Assets (Audio.zip, stroke_order.gif) to GDrive for '{char}'...")
         zip_path = os.path.join(work_dir, "Audio.zip")
-        svg_path = os.path.join(work_dir, "stroke.svg")
+        gif_path = os.path.join(work_dir, "stroke_order.gif")
         timings_path = os.path.join(work_dir, "audio_timings.json")
 
         f_zip = gdrive.upload_file_from_disk(zip_path, "Audio.zip", folder_id, "application/zip") if folder_id else {"url": "https://drive.google.com/Audio.zip"}
         if folder_id:
-            gdrive.upload_file_from_disk(svg_path, "stroke.svg", folder_id, "image/svg+xml")
+            gdrive.upload_file_from_disk(gif_path, "stroke_order.gif", folder_id, "image/gif")
             gdrive.upload_file_from_disk(timings_path, "audio_timings.json", folder_id, "application/json")
 
         sheets.update_voice_complete(row_idx, f_zip.get("url", ""))

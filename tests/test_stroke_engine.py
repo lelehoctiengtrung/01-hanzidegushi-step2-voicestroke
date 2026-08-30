@@ -1,4 +1,4 @@
-"""Unit Tests for Stroke Engine & Gatekeeper 2.A."""
+"""Unit Tests for Stroke Engine & Gatekeeper 2.A (stroke_order.gif)."""
 import os
 import shutil
 import tempfile
@@ -27,7 +27,7 @@ class TestStrokeEngine(unittest.TestCase):
     def test_stroke_generation_and_gk2a(self):
         info = self.engine.generate_stroke_animation("门", self.temp_dir)
         self.assertIn("character", info)
-        self.assertEqual(info["final_color"], "#800020")
+        self.assertEqual(info["gif_file"], "stroke_order.gif")
         self.assertTrue(info["transparency"])
 
         ok, msg = self.gk_2a.validate_stroke_assets(self.temp_dir)

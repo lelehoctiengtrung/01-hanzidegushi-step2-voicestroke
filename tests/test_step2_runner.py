@@ -17,7 +17,7 @@ class TestStep2Runner(unittest.TestCase):
     def test_run_stroke_flow(self):
         info = run_stroke_flow("门", self.temp_dir)
         self.assertEqual(info["character"], "门")
-        self.assertEqual(info["final_color"], "#800020")
+        self.assertEqual(info["gif_file"], "stroke_order.gif")
 
     def test_run_voice_flow(self):
         script_data = {
