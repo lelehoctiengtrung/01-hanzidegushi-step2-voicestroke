@@ -1,0 +1,68 @@
+name: "Step 2: Voice & Stroke Generation (Hanzi De Gushi)"
+
+on:
+  workflow_dispatch:
+    inputs:
+      row:
+        description: "Số hàng cụ thể cần chạy (ví dụ: 226)"
+        required: false
+        default: ""
+      character:
+        description: "Chữ Hán cụ thể cần chạy (ví dụ: '门')"
+        required: false
+        default: ""
+  repository_dispatch:
+    types: [trigger_hanzidegushi_step2]
+
+jobs:
+  voicestroke_generation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Codebase"
+        uses: actions/checkout@v4
+
+      - name: "Setup Python 3.11"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: "Install Dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: "Cache Hanzi Stroke Data & Models"
+        uses: actions/cache@v4
+        with:
+          path: |
+            assets/strokes_cache
+            ~/.cache/edge_tts
+          key: ${{ runner.os }}-hanzi-stroke-v1
+          restore-keys: |
+            ${{ runner.os }}-hanzi-stroke-
+
+      - name: "Run Step 2 TDD Test Suite"
+        env:
+          PYTHONPATH: .
+        run: |
+          pytest tests/ -v
+
+      - name: "Execute Step 2 Voice & Stroke Runner"
+        env:
+          PYTHONPATH: .
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEYS: ${{ secrets.OPENROUTER_API_KEYS || secrets.OPENROUTER_API_KEY }}
+          GCP_SERVICE_ACCOUNT_BASE64: ${{ secrets.GCP_SERVICE_ACCOUNT_BASE64 }}
+          USER_OAUTH2_BASE64: ${{ secrets.USER_OAUTH2_BASE64 }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+        run: |
+          ROW_ARG=""
+          if [ -n "${{ github.event.inputs.row }}" ]; then
+            ROW_ARG="--row ${{ github.event.inputs.row }}"
+          fi
+          CHAR_ARG=""
+          if [ -n "${{ github.event.inputs.character }}" ]; then
+            CHAR_ARG="--character ${{ github.event.inputs.character }}"
+          fi
+          python src/step2_runner.py $ROW_ARG $CHAR_ARG
