@@ -28,14 +28,45 @@
             position: relative;
         }
     </style>
+    <script src="/node_modules/hanzi-writer/dist/hanzi-writer.min.js"></script>
+</head>
+<body>
+    <div id="character-container"></div>
     <script>
-        // Deterministic Virtual Clock for exact frame-by-frame animation capture
-        (function() {
-            let currentTime = 1000;
-            let rafCallbacks = [];
-            let timeouts = [];
-            let nextId = 1;
+        const urlParams = new URLSearchParams(window.location.search);
+        const character = urlParams.get('char') || '中';
 
+        window.writer = null;
+        window.loadError = null;
+        window.animationReady = false;
+        window.animationFinished = false;
+
+        let currentTime = 1000;
+        let rafCallbacks = [];
+        let timeouts = [];
+        let nextId = 1;
+
+        window.advanceTime = function(ms) {
+            currentTime += ms;
+
+            // Run due timeouts
+            const dueTimeouts = timeouts.filter(t => t.triggerTime <= currentTime);
+            timeouts = timeouts.filter(t => t.triggerTime > currentTime);
+            dueTimeouts.sort((a, b) => a.triggerTime - b.triggerTime);
+            for (let t of dueTimeouts) {
+                try { t.cb(); } catch (e) { console.error('Timeout error:', e); }
+            }
+
+            // Run RAF callbacks
+            const currentRafs = rafCallbacks;
+            rafCallbacks = [];
+            for (let r of currentRafs) {
+                try { r.cb(currentTime); } catch (e) { console.error('RAF error:', e); }
+            }
+        };
+
+        window.startCapture = function() {
+            // Hijack time APIs for deterministic virtual clock
             window.performance.now = () => currentTime;
             Date.now = () => currentTime;
 
@@ -57,38 +88,15 @@
                 timeouts = timeouts.filter(t => t.id !== id);
             };
 
-            window.advanceTime = function(ms) {
-                currentTime += ms;
+            if (!window.writer) return;
 
-                // Run due timeouts
-                const dueTimeouts = timeouts.filter(t => t.triggerTime <= currentTime);
-                timeouts = timeouts.filter(t => t.triggerTime > currentTime);
-                dueTimeouts.sort((a, b) => a.triggerTime - b.triggerTime);
-                for (let t of dueTimeouts) {
-                    try { t.cb(); } catch (e) { console.error('Timeout error:', e); }
+            window.writer.animateCharacter({
+                onComplete: function() {
+                    console.log('HanziWriter native animation finished!');
+                    window.animationFinished = true;
                 }
-
-                // Run RAF callbacks
-                const currentRafs = rafCallbacks;
-                rafCallbacks = [];
-                for (let r of currentRafs) {
-                    try { r.cb(currentTime); } catch (e) { console.error('RAF error:', e); }
-                }
-            };
-        })();
-    </script>
-    <script src="/node_modules/hanzi-writer/dist/hanzi-writer.min.js"></script>
-</head>
-<body>
-    <div id="character-container"></div>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const character = urlParams.get('char') || '中';
-
-        window.writer = null;
-        window.loadError = null;
-        window.animationReady = false;
-        window.animationFinished = false;
+            });
+        };
 
         function initHanziWriter(charData) {
             try {
@@ -112,7 +120,7 @@
 
                 if (writer._withDataPromise) {
                     writer._withDataPromise.then(function() {
-                        console.log('HanziWriter loaded! Starting animateCharacter...');
+                        console.log('HanziWriter character ready!');
                         window.animationReady = true;
                     }).catch(function(err) {
                         console.error('HanziWriter error:', err);
@@ -120,9 +128,7 @@
                         window.animationReady = true;
                     });
                 } else {
-                    setTimeout(() => {
-                        window.animationReady = true;
-                    }, 100);
+                    window.animationReady = true;
                 }
             } catch (err) {
                 console.error('Error creating HanziWriter:', err);
@@ -130,16 +136,6 @@
                 window.animationReady = true;
             }
         }
-
-        window.startNativeAnimation = function() {
-            if (!window.writer) return Promise.resolve();
-            return window.writer.animateCharacter({
-                onComplete: function() {
-                    console.log('Native animateCharacter completed!');
-                    window.animationFinished = true;
-                }
-            });
-        };
 
         if (window.__INITIAL_CHAR_DATA__) {
             initHanziWriter(window.__INITIAL_CHAR_DATA__);

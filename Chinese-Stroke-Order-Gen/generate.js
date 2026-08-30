@@ -236,9 +236,9 @@ async function generateGIF(character) {
 
         console.log(`汉字 "${character}" 共有 ${strokeCount} 个笔画，开始逐帧录制原生动画...`);
 
-        // 启动原生 HanziWriter 笔画动画
+        // 启动原生 HanziWriter 笔画动画与虚拟时钟
         await page.evaluate(() => {
-            window.startNativeAnimation();
+            window.startCapture();
         });
 
         let frameIndex = 0;
