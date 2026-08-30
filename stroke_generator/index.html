@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese Stroke Order Generator</title>
+    <title>Chinese Stroke Order Animation</title>
     <style>
         * {
             margin: 0;
@@ -19,13 +19,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
             overflow: hidden;
         }
-        #canvas-container, #character-container, svg {
+        #canvas-container, #character-container {
             width: 500px;
             height: 500px;
             position: relative;
+            background: transparent !important;
+        }
+        svg {
             background: transparent !important;
         }
     </style>
@@ -38,68 +40,38 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const character = urlParams.get('char') || '门';
-        
-        const RAINBOW_PALETTE = [
-            '#E63946', '#F4A261', '#2A9D8F', '#457B9D',
-            '#9B5DE5', '#F15BB5', '#00BBF9', '#00F5D4',
-            '#DDA15E', '#BC6C25', '#E76F51', '#264653'
-        ];
         const BORDEAUX_RED = '#800020';
 
         const writer = HanziWriter.create('character-container', character, {
             width: 500,
             height: 500,
             padding: 20,
-            strokeColor: '#E63946',
+            strokeColor: BORDEAUX_RED,
             strokeWidth: 6,
             showCharacter: false,
             showOutline: false,
-            delayBetweenStrokes: 350,
-            strokeAnimationDuration: 900
+            delayBetweenStrokes: 300,
+            strokeAnimationDuration: 750
         });
 
         window.writer = writer;
         window.animationReady = false;
         window.animationComplete = false;
 
-        async function runAnimation() {
+        async function startStrokeAnimation() {
+            window.animationComplete = false;
             try {
-                let charData = null;
-                try {
-                    charData = await HanziWriter.loadCharacterData(character);
-                } catch(e) {
-                    charData = writer._character;
-                }
-                const strokeCount = charData && charData.strokes ? charData.strokes.length : 3;
-
-                for (let i = 0; i < strokeCount; i++) {
-                    const color = RAINBOW_PALETTE[i % RAINBOW_PALETTE.length];
-                    await writer.animateStroke(i, { strokeColor: color });
-                    await new Promise(r => setTimeout(r, 250));
-                }
-
-                await new Promise(r => setTimeout(r, 400));
-                const paths = document.querySelectorAll('#character-container svg path');
-                paths.forEach(p => {
-                    p.setAttribute('stroke', BORDEAUX_RED);
-                    p.style.stroke = BORDEAUX_RED;
-                });
+                await writer.animateCharacter();
+                // Hold solid Bordeaux Red completed state for 1.2s
                 await new Promise(r => setTimeout(r, 1200));
                 window.animationComplete = true;
             } catch (err) {
                 console.error('Animation error:', err);
-                await writer.animateCharacter();
-                const paths = document.querySelectorAll('#character-container svg path');
-                paths.forEach(p => {
-                    p.setAttribute('stroke', BORDEAUX_RED);
-                    p.style.stroke = BORDEAUX_RED;
-                });
-                await new Promise(r => setTimeout(r, 1000));
                 window.animationComplete = true;
             }
         }
 
-        window.runAnimation = runAnimation;
+        window.startStrokeAnimation = startStrokeAnimation;
         setTimeout(() => { window.animationReady = true; }, 800);
     </script>
 </body>

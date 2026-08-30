@@ -81,7 +81,7 @@ function stopStaticServer(server) {
 }
 
 async function generateGIF(character) {
-    console.log(`🎨 Generating transparent multi-color Bordeaux Red stroke_order.gif for "${character}"...`);
+    console.log(`🎨 Generating clean transparent Bordeaux Red stroke_order.gif for "${character}"...`);
     const { server, origin } = await startStaticServer(__dirname);
     let browser;
     const tempFrameDir = path.join(CONFIG.tempDir, character);
@@ -105,11 +105,11 @@ async function generateGIF(character) {
         await page.waitForFunction(() => window.animationReady === true, { timeout: 15000 });
         await new Promise(r => setTimeout(r, 400));
 
-        // Start multi-color stroke animation in page
-        await page.evaluate(() => window.runAnimation());
+        // Start stroke animation
+        await page.evaluate(() => window.startStrokeAnimation());
 
         const frameInterval = 1000 / CONFIG.fps;
-        const maxFrames = 150; // max 10 seconds
+        const maxFrames = 150;
         let frameCount = 0;
 
         for (let i = 0; i < maxFrames; i++) {
@@ -121,12 +121,10 @@ async function generateGIF(character) {
             });
             frameCount++;
 
-            // Check if animation completed after minimum 35 frames
-            if (i >= 35) {
+            if (i >= 30) {
                 const isDone = await page.evaluate(() => window.animationComplete === true);
                 if (isDone) {
-                    // Record 10 more holding frames in Bordeaux Red
-                    for (let h = 0; h < 10; h++) {
+                    for (let h = 0; h < 8; h++) {
                         const hPath = path.join(tempFrameDir, `frame${String(frameCount).padStart(4, '0')}.png`);
                         await page.screenshot({
                             path: hPath,
