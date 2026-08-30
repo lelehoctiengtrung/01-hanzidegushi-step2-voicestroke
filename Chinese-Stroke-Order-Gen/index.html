@@ -146,21 +146,28 @@
                     showOutline: false,
                     delayBetweenStrokes: 0,
                     delayBetweenLoops: 0,
-                    radicalColor: '#800020',
-                    onLoadCharDataSuccess: function(data) {
-                        window.charDataLoaded = true;
-                        window.animationReady = true;
-                    },
-                    onLoadCharDataError: function(err) {
-                        window.loadError = (err && err.message) || String(err);
-                        window.animationReady = true;
-                    }
+                    radicalColor: '#800020'
                 };
                 if (charData) {
                     options.charDataLoader = (char, onComplete) => onComplete(charData);
                 }
                 const writer = HanziWriter.create('character-container', character, options);
                 window.writer = writer;
+
+                if (writer._withDataPromise) {
+                    writer._withDataPromise.then(function() {
+                        console.log('HanziWriter _character fully mounted!');
+                        window.animationReady = true;
+                    }).catch(function(err) {
+                        console.error('HanziWriter withDataPromise error:', err);
+                        window.loadError = (err && err.message) || String(err);
+                        window.animationReady = true;
+                    });
+                } else {
+                    setTimeout(() => {
+                        window.animationReady = true;
+                    }, 200);
+                }
             } catch (err) {
                 console.error('Error creating HanziWriter:', err);
                 window.loadError = err.message || 'Error creating HanziWriter';

@@ -148,6 +148,7 @@ async function generateGIF(character) {
         });
 
         const page = await browser.newPage();
+        page.on('console', msg => console.log(`[PAGE LOG] ${msg.text()}`));
         page.on('pageerror', error => {
             console.error('页面脚本错误:', error.message);
         });
@@ -204,17 +205,18 @@ async function generateGIF(character) {
             timeout: 30000
         });
 
-        // 等待Hanzi Writer完全加载完成并初始化_character
+        // 等待Hanzi Writer完全加载完成
         await page.waitForFunction(() => {
             if (window.loadError) return true;
-            return window.animationReady === true && window.writer && window.writer._character;
+            return window.animationReady === true;
         }, { timeout: 15000 });
 
         const loadError = await page.evaluate(() => window.loadError || null);
         if (loadError) {
-            throw new Error(loadError);
+            throw new Error(`页面HanziWriter初始化失败: ${loadError}`);
         }
 
+        // 获取笔画数量 (优先从writer._character取，备选从__INITIAL_CHAR_DATA__取)
         const strokeCount = await page.evaluate(() => {
             if (window.writer && window.writer._character && window.writer._character.strokes) {
                 return window.writer._character.strokes.length;
