@@ -3,10 +3,17 @@ import asyncio
 import contextlib
 import logging
 import os
+import sys
 import wave
 from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
+
+# Ensure local cloned OmniVoice repository is on python sys.path
+OMNIVOICE_REPO_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "OmniVoice")
+if os.path.exists(OMNIVOICE_REPO_DIR) and OMNIVOICE_REPO_DIR not in sys.path:
+    sys.path.insert(0, OMNIVOICE_REPO_DIR)
+
 VOICE_ZH = "zh-CN-XiaoxiaoNeural"
 DEFAULT_REF_AUDIO = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), "assets", "reference_audio", "vietnamese_ref.mp3"
@@ -22,7 +29,7 @@ class VoiceEngine:
         self._init_omnivoice()
 
     def _init_omnivoice(self) -> None:
-        """Initializes and caches the k2-fsa/OmniVoice model."""
+        """Initializes and caches the k2-fsa/OmniVoice model from local repo / HuggingFace."""
         try:
             from omnivoice.models.omnivoice import OmniVoice
             import torch
