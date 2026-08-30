@@ -112,7 +112,13 @@
             if (!window.writer || !window.writer._hanziWriterRenderer || !window.writer._hanziWriterRenderer._mainCharRenderer) {
                 return;
             }
-            const strokeRenderers = window.writer._hanziWriterRenderer._mainCharRenderer._strokeRenderers;
+            const mainCharRenderer = window.writer._hanziWriterRenderer._mainCharRenderer;
+            if (mainCharRenderer._group) {
+                mainCharRenderer._group.style.removeProperty('display');
+                mainCharRenderer._group.style.opacity = '1';
+            }
+
+            const strokeRenderers = mainCharRenderer._strokeRenderers;
             if (!strokeRenderers || strokeRenderers.length === 0) return;
 
             const bordeaux = { r: 128, g: 0, b: 32, a: 1 };
