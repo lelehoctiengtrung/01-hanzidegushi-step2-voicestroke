@@ -52,10 +52,16 @@ jobs:
       - name: "Install Stroke Generator NPM Dependencies"
         run: |
           if [ -d "Chinese-Stroke-Order-Gen" ]; then
-            cd Chinese-Stroke-Order-Gen && npm install && cd ..
+            cd Chinese-Stroke-Order-Gen
+            npm install
+            npx puppeteer browsers install chrome
+            cd ..
           fi
           if [ -d "stroke_generator" ]; then
-            cd stroke_generator && npm install && cd ..
+            cd stroke_generator
+            npm install
+            npx puppeteer browsers install chrome
+            cd ..
           fi
 
       - name: "Install Python Dependencies"

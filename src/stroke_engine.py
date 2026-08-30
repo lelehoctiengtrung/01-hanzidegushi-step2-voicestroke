@@ -69,18 +69,23 @@ class StrokeEngine:
             cmd = ["node", "generate.js", character]
             logger.info(f"🎨 Running HanziWriter Puppeteer: {cmd} in {STROKE_GEN_DIR}")
             res = subprocess.run(cmd, cwd=STROKE_GEN_DIR, capture_output=True, text=True, timeout=120)
+            if res.stdout:
+                logger.info(f"📄 Puppeteer stdout:\n{res.stdout.strip()}")
+            if res.stderr:
+                logger.info(f"⚠️ Puppeteer stderr:\n{res.stderr.strip()}")
+
             if res.returncode == 0:
                 for cand in [f"{character}-transparent.gif", f"{character}.gif", f"{character}.GIF"]:
                     gen_out = os.path.join(STROKE_GEN_DIR, "output", cand)
                     if os.path.exists(gen_out) and os.path.getsize(gen_out) > 1000:
                         shutil.copy(gen_out, dest_gif)
                         node_success = True
-                        logger.info(f"🎨 Generated '{character}' stroke_order.gif via HanziWriter Puppeteer ({cand}).")
+                        logger.info(f"🎨 Successfully copied '{cand}' to '{dest_gif}' ({os.path.getsize(dest_gif)} bytes).")
                         break
             else:
-                logger.warning(f"Node Puppeteer failed (code {res.returncode}): {res.stderr}\n{res.stdout}")
+                logger.error(f"❌ Node Puppeteer exit code {res.returncode}")
         except Exception as e:
-            logger.warning(f"Node Puppeteer stroke generation exception: {e}")
+            logger.error(f"❌ Node Puppeteer execution exception: {e}")
 
         # 2. Fallback generator if Node was not available
         stroke_data = self.cache.get_stroke_data(character) or {}
