@@ -142,7 +142,7 @@
                     padding: 30,
                     strokeColor: '#800020', // Bordeaux Red
                     strokeWidth: 5,
-                    showCharacter: false,
+                    showCharacter: true,
                     showOutline: false,
                     delayBetweenStrokes: 0,
                     delayBetweenLoops: 0,
@@ -157,6 +157,7 @@
                 if (writer._withDataPromise) {
                     writer._withDataPromise.then(function() {
                         console.log('HanziWriter _character fully mounted!');
+                        window.renderProgress(0, 0);
                         window.animationReady = true;
                     }).catch(function(err) {
                         console.error('HanziWriter withDataPromise error:', err);
@@ -165,6 +166,7 @@
                     });
                 } else {
                     setTimeout(() => {
+                        window.renderProgress(0, 0);
                         window.animationReady = true;
                     }, 200);
                 }

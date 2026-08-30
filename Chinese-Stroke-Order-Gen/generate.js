@@ -237,6 +237,7 @@ async function generateGIF(character) {
         const pauseFrames = 3;
         const holdFrames = 12;
         let frameIndex = 0;
+        const container = await page.$('#character-container') || await page.$('#canvas-container');
 
         for (let s = 0; s < strokeCount; s++) {
             for (let f = 1; f <= framesPerStroke; f++) {
@@ -248,32 +249,34 @@ async function generateGIF(character) {
                 }, s, easedProgress);
 
                 const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
-                await page.screenshot({
-                    path: framePath,
-                    omitBackground: CONFIG.mode === 'transparent',
-                    clip: {
-                        x: 0,
-                        y: 0,
-                        width: CONFIG.width,
-                        height: CONFIG.height
-                    }
-                });
+                if (container) {
+                    await container.screenshot({
+                        path: framePath,
+                        omitBackground: CONFIG.mode === 'transparent'
+                    });
+                } else {
+                    await page.screenshot({
+                        path: framePath,
+                        omitBackground: CONFIG.mode === 'transparent'
+                    });
+                }
                 frameIndex++;
             }
 
             if (s < strokeCount - 1) {
                 for (let p = 0; p < pauseFrames; p++) {
                     const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
-                    await page.screenshot({
-                        path: framePath,
-                        omitBackground: CONFIG.mode === 'transparent',
-                        clip: {
-                            x: 0,
-                            y: 0,
-                            width: CONFIG.width,
-                            height: CONFIG.height
-                        }
-                    });
+                    if (container) {
+                        await container.screenshot({
+                            path: framePath,
+                            omitBackground: CONFIG.mode === 'transparent'
+                        });
+                    } else {
+                        await page.screenshot({
+                            path: framePath,
+                            omitBackground: CONFIG.mode === 'transparent'
+                        });
+                    }
                     frameIndex++;
                 }
             }
@@ -286,16 +289,17 @@ async function generateGIF(character) {
 
         for (let h = 0; h < holdFrames; h++) {
             const framePath = path.join(tempFrameDir, `frame${String(frameIndex).padStart(4, '0')}.png`);
-            await page.screenshot({
-                path: framePath,
-                omitBackground: CONFIG.mode === 'transparent',
-                clip: {
-                    x: 0,
-                    y: 0,
-                    width: CONFIG.width,
-                    height: CONFIG.height
-                }
-            });
+            if (container) {
+                await container.screenshot({
+                    path: framePath,
+                    omitBackground: CONFIG.mode === 'transparent'
+                });
+            } else {
+                await page.screenshot({
+                    path: framePath,
+                    omitBackground: CONFIG.mode === 'transparent'
+                });
+            }
             frameIndex++;
         }
 
