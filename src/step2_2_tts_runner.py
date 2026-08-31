@@ -41,14 +41,15 @@ def process_tts_for_row(row_info: Dict[str, Any]) -> bool:
         if not ok_b:
             raise ValueError(f"GK-2.B Failure: {msg_b}")
         timings_path = os.path.join(work_dir, "audio_timings.json")
-        f_zip = gdrive.upload_file_from_disk(zip_path, "Audio.zip", fid, "application/zip") if fid else {"url": "https://drive.google.com/Audio.zip"}
+        f_timings = gdrive.upload_file_from_disk(timings_path, "audio_timings.json", fid, "application/json") if fid else {"url": ""}
+        f_zip = gdrive.upload_file_from_disk(zip_path, "Audio.zip", fid, "application/zip") if fid else {"url": ""}
         if fid:
-            gdrive.upload_file_from_disk(timings_path, "audio_timings.json", fid, "application/json")
             for fname in durations.keys():
                 fpath = os.path.join(work_dir, fname)
                 mime = "audio/wav" if fname.endswith(".wav") else "audio/mpeg"
                 gdrive.upload_file_from_disk(fpath, fname, fid, mime)
-        sheets.update_voice_complete(row_idx, f_zip.get("url", ""))
+        v_url = f_timings.get("url") or f_zip.get("url") or gfolder_url
+        sheets.update_voice_complete(row_idx, v_url)
         logger.info(f"🎉 STEP 2.2 TTS DONE: '{char}' Row {row_idx} (Status -> Voice)!")
         return True
     except Exception as e:

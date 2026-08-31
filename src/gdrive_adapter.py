@@ -50,7 +50,7 @@ class GDriveAdapter:
             media = MediaFileUpload(local_path, mimetype=mime_type, resumable=True)
             res = self.service.files().create(body=meta, media_body=media, fields="id, webViewLink", supportsAllDrives=True).execute()
             fid = res.get("id")
-            furl = res.get("webViewLink", f"https://drive.google.com/file/d/{fid}/view?usp=drivesdk")
+            furl = res.get("webViewLink") or f"https://drive.google.com/file/d/{fid}/view?usp=drivesdk"
             logger.info(f"Uploaded '{filename}' to GDrive folder {folder_id} -> ID: {fid}")
             return {"id": fid, "url": furl}
         except Exception as e:
