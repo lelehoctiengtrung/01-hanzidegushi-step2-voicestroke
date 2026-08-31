@@ -57,19 +57,25 @@ class GDriveAdapter:
             logger.error(f"Failed to upload '{filename}': {e}")
             return {"id": "", "url": ""}
 
-    def download_config_json(self, folder_id: str) -> Optional[Dict[str, Any]]:
-        """Finds and reads config.json in the character's GDrive folder."""
-        if not self.service:
+    def download_text_file(self, folder_id: str, filename: str) -> Optional[str]:
+        """Finds and reads text file in the GDrive folder."""
+        if not self.service or not folder_id:
             return None
         try:
-            q = f"'{folder_id}' in parents and name = 'config.json' and trashed = false"
+            q = f"'{folder_id}' in parents and name = '{filename}' and trashed = false"
             res = self.service.files().list(q=q, fields="files(id, name)", supportsAllDrives=True).execute()
             files = res.get("files", [])
-            if not files:
-                return None
-            fid = files[0]["id"]
-            content = self.service.files().get_media(fileId=fid, supportsAllDrives=True).execute()
-            return json.loads(content.decode("utf-8"))
+            return self.download_file_by_id(files[0]["id"]) if files else None
         except Exception as e:
-            logger.warning(f"Download config.json note: {e}")
+            logger.warning(f"Download {filename} note: {e}")
+            return None
+
+    def download_file_by_id(self, file_id: str) -> Optional[str]:
+        if not self.service or not file_id:
+            return None
+        try:
+            content = self.service.files().get_media(fileId=file_id, supportsAllDrives=True).execute()
+            return content.decode("utf-8")
+        except Exception as e:
+            logger.warning(f"Download file {file_id} note: {e}")
             return None

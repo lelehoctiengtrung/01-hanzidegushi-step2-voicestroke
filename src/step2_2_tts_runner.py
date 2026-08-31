@@ -2,6 +2,7 @@
 import argparse
 import logging
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -18,23 +19,19 @@ logger = logging.getLogger(__name__)
 
 
 def process_tts_for_row(row_info: Dict[str, Any]) -> bool:
-    """Executes Step 2.2 TTS flow (OmniVoice for VI, Edge-TTS for ZH) and uploads to GDrive."""
     row_idx, char = row_info["row_idx"], row_info["character"]
     gfolder_url = row_info.get("gfolder_url", "")
-    folder_id = gfolder_url.split("/folders/")[-1].split("?")[0] if "/folders/" in gfolder_url else ""
-
-    logger.info(f"🎙️ [Step 2.2] Starting TTS Voice Synthesis for Row {row_idx} ('{char}')...")
+    fid = gfolder_url.split("/folders/")[-1].split("?")[0] if "/folders/" in gfolder_url else ""
+    logger.info(f"🎙️ [Step 2.2] Starting TTS Synthesis: Row {row_idx} ('{char}')...")
     engine, packager, gk_2b, gdrive, sheets = VoiceEngine(), AudioPackager(), Gatekeeper2B(), GDriveAdapter(), SheetsAdapter()
 
-    script_data = gdrive.download_config_json(folder_id) if folder_id else None
-    if not script_data:
-        script_data = {
-            "character": char,
-            "meaning": "NGHĨA",
-            "story": f"Câu chuyện ý nghĩa chiết tự cho chữ {char}.",
-            "examples": [{"hanzi": f"{char}1", "mean": "nghĩa 1"}, {"hanzi": f"{char}2", "mean": "nghĩa 2"}]
-        }
+    stext = gdrive.download_text_file(fid, "voiceover_script.txt") if fid else None
+    if not stext and "script_url" in row_info:
+        m = re.search(r'[-_\w]{25,}', row_info["script_url"])
+        if m:
+            stext = gdrive.download_file_by_id(m.group(0))
 
+    script_data = {"character": char, "script_text": stext or "", "meaning": "nghĩa"}
     work_dir = tempfile.mkdtemp(prefix=f"step2_2_tts_{char}_")
     try:
         durations = engine.generate_all_tracks(script_data, work_dir)
@@ -43,49 +40,55 @@ def process_tts_for_row(row_info: Dict[str, Any]) -> bool:
         ok_b, msg_b = gk_2b.validate_voice_assets(zip_path, timings)
         if not ok_b:
             raise ValueError(f"GK-2.B Failure: {msg_b}")
-        logger.info(f"✅ [Step 2.2] GK-2.B Passed for '{char}'.")
-
         timings_path = os.path.join(work_dir, "audio_timings.json")
-        f_zip = gdrive.upload_file_from_disk(zip_path, "Audio.zip", folder_id, "application/zip") if folder_id else {"url": "https://drive.google.com/Audio.zip"}
-        if folder_id:
-            gdrive.upload_file_from_disk(timings_path, "audio_timings.json", folder_id, "application/json")
-
+        f_zip = gdrive.upload_file_from_disk(zip_path, "Audio.zip", fid, "application/zip") if fid else {"url": "https://drive.google.com/Audio.zip"}
+        if fid:
+            gdrive.upload_file_from_disk(timings_path, "audio_timings.json", fid, "application/json")
+            for fname in durations.keys():
+                fpath = os.path.join(work_dir, fname)
+                mime = "audio/wav" if fname.endswith(".wav") else "audio/mpeg"
+                gdrive.upload_file_from_disk(fpath, fname, fid, mime)
         sheets.update_voice_complete(row_idx, f_zip.get("url", ""))
-        logger.info(f"🎉 STEP 2.2 TTS COMPLETED FOR '{char}' at Row {row_idx} (Status -> 'Voice')!")
+        logger.info(f"🎉 STEP 2.2 TTS DONE: '{char}' Row {row_idx} (Status -> Voice)!")
         return True
     except Exception as e:
-        logger.error(f"❌ Step 2.2 Error for Row {row_idx} ('{char}'): {e}")
+        logger.error(f"❌ Step 2.2 Error Row {row_idx} ('{char}'): {e}")
         return False
     finally:
         shutil.rmtree(work_dir, ignore_errors=True)
 
 
-def run_step2_2_lifecycle(target_row: Optional[int] = None, target_char: Optional[str] = None) -> bool:
-    """Lifecycle orchestrator for Step 2.2 TTS Voice."""
+def run_step2_2_lifecycle(
+    target_row: Optional[int] = None,
+    target_char: Optional[str] = None,
+    start_row: Optional[int] = None,
+    end_row: Optional[int] = None
+) -> bool:
     sheets = SheetsAdapter()
+    if start_row and end_row:
+        success = True
+        for r_idx in range(start_row, end_row + 1):
+            r_info = sheets.get_row_by_index(r_idx)
+            if r_info and not process_tts_for_row(r_info):
+                success = False
+        return success
     if target_row:
-        row_info = sheets.get_row_by_index(target_row)
-        return process_tts_for_row(row_info) if row_info else False
-
-    pending_rows = sheets.get_pending_voice_rows()
+        r_info = sheets.get_row_by_index(target_row)
+        return process_tts_for_row(r_info) if r_info else False
+    rows = sheets.get_pending_voice_rows()
     if target_char:
-        pending_rows = [r for r in pending_rows if r["character"] == target_char]
-
-    if not pending_rows:
-        logger.info("ℹ️ No rows pending for Step 2.2 TTS Voice.")
-        return True
-
-    success = True
-    for r in pending_rows:
-        if not process_tts_for_row(r):
-            success = False
-    return success
+        rows = [r for r in rows if r["character"] == target_char]
+    return all(process_tts_for_row(r) for r in rows) if rows else (logger.info("ℹ️ No pending rows.") or True)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Step 2.2 TTS Voice Runner")
-    parser.add_argument("--row", type=int, help="Specific row index to process")
-    parser.add_argument("--character", type=str, help="Specific character to process")
+    parser.add_argument("--row", type=int, help="Specific row index")
+    parser.add_argument("--character", type=str, help="Specific character")
+    parser.add_argument("--start-row", type=int, help="Start row index")
+    parser.add_argument("--end-row", type=int, help="End row index")
     args = parser.parse_args()
-    ok = run_step2_2_lifecycle(target_row=args.row, target_char=args.character)
+    ok = run_step2_2_lifecycle(
+        target_row=args.row, target_char=args.character, start_row=args.start_row, end_row=args.end_row
+    )
     sys.exit(0 if ok else 1)

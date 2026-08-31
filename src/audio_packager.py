@@ -6,11 +6,6 @@ import zipfile
 from typing import Dict, Any
 
 logger = logging.getLogger(__name__)
-
-TRACK_KEYS = [
-    "vi_part1.wav", "zh_main.mp3", "vi_part2.wav", "vi_vidu.wav",
-    "zh_1.mp3", "vi_part3.wav", "zh_2.mp3", "vi_part4.wav"
-]
 PAUSE_GAP = 0.35  # Gap between voice tracks in seconds
 
 
@@ -23,8 +18,7 @@ class AudioPackager:
         timeline = []
         current_time = 0.0
 
-        for key in TRACK_KEYS:
-            dur = durations.get(key, 1.0)
+        for key, dur in durations.items():
             start_t = round(current_time, 3)
             end_t = round(start_t + dur, 3)
             timeline.append({
@@ -42,19 +36,17 @@ class AudioPackager:
             "track_durations": durations
         }
 
-        # Save audio_timings.json
         timings_path = os.path.join(audio_dir, "audio_timings.json")
         with open(timings_path, "w", encoding="utf-8") as f:
             json.dump(timings_data, f, ensure_ascii=False, indent=2)
 
-        # Create Audio.zip
         with zipfile.ZipFile(output_zip, "w", zipfile.ZIP_DEFLATED) as zf:
-            for key in TRACK_KEYS:
+            for key in durations.keys():
                 fpath = os.path.join(audio_dir, key)
                 if os.path.exists(fpath):
                     zf.write(fpath, arcname=key)
             if os.path.exists(timings_path):
                 zf.write(timings_path, arcname="audio_timings.json")
 
-        logger.info(f"📦 Packaged {len(TRACK_KEYS)} audio tracks into '{output_zip}' (Total: {total_duration:.1f}s).")
+        logger.info(f"📦 Packaged {len(durations)} audio tracks into '{output_zip}' (Total: {total_duration:.1f}s).")
         return timings_data
